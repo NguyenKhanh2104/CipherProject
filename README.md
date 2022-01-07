@@ -1,3 +1,0 @@
-# CipherProject
-
-final-example

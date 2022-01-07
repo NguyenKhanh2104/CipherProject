@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Web_Shoes:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>Web_Shoes</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="Web_Shoes-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="Web_Shoes:war exploded" />
+    </root>
+  </artifact>
+</component>
