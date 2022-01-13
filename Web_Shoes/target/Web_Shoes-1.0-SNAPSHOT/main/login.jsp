@@ -357,8 +357,13 @@
             </div>
             <div class="login-box-seperator"></div>
         </div>
-        <p class="text-danger"style="color: red;font-size: 16px;margin-left: 132px">${mess}</p>
+
         <div class="email-login" style="background-color: #ffffff">
+            <span>
+            <%=
+            request.getAttribute("mess") == null ? "" : request.getAttribute("mess")
+            %>
+        </span>
             <input
                     style="height: 50px"
                     type="username"

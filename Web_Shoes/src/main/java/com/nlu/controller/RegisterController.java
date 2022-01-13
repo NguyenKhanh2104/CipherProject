@@ -43,6 +43,7 @@ public class RegisterController extends HttpServlet {
             return;
         }
         User user = new User();
+        user.setId(0);
         user.setUserKey(username,password);
         user.setUsername(username);
         user.setEmail(email);

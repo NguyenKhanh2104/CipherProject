@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>DDangw nhap Thanh Cong</h1>
+    <h1>Dang nhap Thanh Cong</h1>
 </body>
 </html>

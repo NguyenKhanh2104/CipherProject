@@ -25,8 +25,9 @@ public class LoginController extends HttpServlet {
         String password = req.getParameter("password");
         UserService userService = new UserService();
         User user = userService.getUser(username, password);
-        if (user == null) {
+        if (user.getUsername() == null || user.getPassword() ==null) {
             req.setAttribute("mess", "User name hoặc mật khẩu sai");
+            req.getRequestDispatcher("/main/login.jsp").forward(req,resp);
         }
         if (user != null) {
             HttpSession session = req.getSession();
@@ -38,6 +39,7 @@ public class LoginController extends HttpServlet {
                 resp.sendRedirect("/");
             }
         }
+
 
     }
 }

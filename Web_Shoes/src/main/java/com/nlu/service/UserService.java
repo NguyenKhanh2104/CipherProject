@@ -50,11 +50,11 @@ public class UserService {
         Connection conn = getConnection();
         String query = "SELECT * FROM user WHERE username= ? AND password=?";
         User user = new User();
-//        String result = user.toMd5(password);
+        String result = user.toMd5(password);
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, username);
-            ps.setString(2, password);
+            ps.setString(2, result);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 user = new User(rs.getInt(1), rs.getString(2), rs.getString(3),
@@ -162,13 +162,14 @@ public class UserService {
 
     public static void main(String[] args) {
         UserService userService = new UserService();
-       System.out.println(userService.getUserIDByName("khanh"));
+//       System.out.println(userService.getUserIDByName("khanh"));
+//       System.out.println(userService.getUser("khnh","123"));
 //        List<User> li = userService.findAll();
 //        for (User u: li
 //             ) {
 //            System.out.println(u);
 //        }
 
-//        userService.save(new User(3,"key","khanhduy","password","18130060@gmail.com","0869104353","Ben Tre","Ben Tre","addresss",""),"customer");
+        userService.save(new User(3,"key","khanh","password","1813000@gmail.com","0869104353","dn","dn","addresss",""),"customer");
     }
 }

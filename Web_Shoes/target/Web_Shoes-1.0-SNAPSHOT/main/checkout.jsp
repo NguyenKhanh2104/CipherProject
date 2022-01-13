@@ -3,8 +3,8 @@
 <%@ page import="com.nlu.model.CartItem" %>
 <%@ page import="java.util.Collection" %>
 <%@ page import="com.nlu.model.User" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"  %>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/fmt" prefix = "fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <html>
 <head>
@@ -135,7 +135,7 @@
                         class="modern-form__form-container"
                         style="width: 100%; height: 603px"
                 >
-                    <p class="text-danger"style="color: red;font-size: 16px;margin-left: 132px">${mess1}</p>
+                    <p class="text-danger" style="color: red;font-size: 16px;margin-left: 132px">${mess1}</p>
                     <form method="post" action="/checkout" accept-charset="UTF-8">
                         <%
                             User auth = (User) session.getAttribute("auth");
@@ -149,6 +149,7 @@
                                             class="form-control input input-tr"
                                             type="text"
                                             value=${auth.username}
+                                                    readonly
                                     />
                                     <div class="line-box">
                                         <div class="line"></div>
@@ -263,7 +264,7 @@
                         <td>${item.quality}</td>
 
                         <td>
-                            <fmt:formatNumber maxFractionDigits="0" type="number"   value="${item.price * item.quality}"/>
+                            <fmt:formatNumber maxFractionDigits="0" type="number" value="${item.price * item.quality}"/>
                             vnd
                         </td>
                     </tr>
@@ -273,7 +274,7 @@
                 <td>Tổng Cộng</td>
                 <td></td>
                 <td colspan="2">
-                    <fmt:formatNumber maxFractionDigits="0" type="number"   value="${cart.total()}"/>
+                    <fmt:formatNumber maxFractionDigits="0" type="number" value="${cart.total()}"/>
                     vnd
                 </td>
                 </tfoot>
