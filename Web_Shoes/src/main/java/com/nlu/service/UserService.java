@@ -51,21 +51,21 @@ public class UserService {
         String query = "SELECT * FROM user WHERE username= ? AND password=?";
         User user = new User();
         String result = user.toMd5(password);
+        System.out.println(result);
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, username);
             ps.setString(2, result);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                user = new User(rs.getInt(1), rs.getString(2), rs.getString(3),
+                 user = new User(rs.getInt(1), rs.getString(2), rs.getString(3),
                         rs.getString(4),
                         rs.getString(5),
                         rs.getString(6),
                         rs.getString(7),
                         rs.getString(8),
                         rs.getString(9),
-                        rs.getString(10)
-                );
+                        rs.getString(10));
             }
             return user;
         } catch (SQLException throwables) {
@@ -163,13 +163,13 @@ public class UserService {
     public static void main(String[] args) {
         UserService userService = new UserService();
 //       System.out.println(userService.getUserIDByName("khanh"));
-//       System.out.println(userService.getUser("khnh","123"));
-//        List<User> li = userService.findAll();
-//        for (User u: li
-//             ) {
-//            System.out.println(u);
-//        }
+//       System.out.println(userService.getUser("npk","npk"));
+        List<User> li = userService.findAll();
+        for (User u: li
+             ) {
+            System.out.println(u);
+        }
 
-        userService.save(new User(3,"key","khanh","password","1813000@gmail.com","0869104353","dn","dn","addresss",""),"customer");
+//        userService.save(new User(3,"key","khanh","password","1813000@gmail.com","0869104353","dn","dn","addresss",""),"customer");
     }
 }

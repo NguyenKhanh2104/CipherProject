@@ -1,0 +1,169 @@
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Nhóm quản lí</title>
+    <link rel="shortcut icon" href="./images/webpage.svg" type="image/x-icon"/>
+    <link rel="stylesheet" href="./style/order.css"/>
+    <link rel="stylesheet" href="./style/main.css"/>
+    <link rel="stylesheet" href="./style/user.css"/>
+    <link rel="stylesheet" href="./js/zoom/css/zoom.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<div class="body_container">
+<!--    <table>-->
+<!--        <thead class="check" style="margin: 0px 30px 0px 30px">-->
+<!--        <tr>-->
+<!--            <th><input type="checkbox" name="" id="sellect_all"/></th>-->
+<!--            <th class="thead" style="color: #f1a417">STT</th>-->
+<!--            <th class="th_img">-->
+<!--                <img-->
+<!--                        data-action="zoom"-->
+<!--                        src="./images/image-gallery.svg"-->
+<!--                        style="width: 1.25rem"-->
+<!--                        alt=""-->
+<!--                />-->
+<!--            </th>-->
+<!--            <th class="thead">UserID</th>-->
+<!--            <th class="thead">UserKey</th>-->
+<!--            <th class="thead">UserName</th>-->
+<!--            <th class="thead" style="margin-left: 100px">Password</th>-->
+<!--            <th class="thead">Email</th>-->
+<!--            <th class="thead">Phone</th>-->
+<!--            <th class="thead">City</th>-->
+<!--            <th class="thead">District</th>-->
+<!--            <th class="thead">Role</th>-->
+<!--            <th colspan="3" class="th_action">Option</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody id="table">-->
+<!--        <tr>-->
+<!--            <td><input type="checkbox" class="cb_item"/></td>-->
+<!--            <td class="td_no">1</td>-->
+<!--            <td class="td_img">-->
+<!--                <img-->
+<!--                        data-action="zoom"-->
+<!--                        src="./images/img01.jpg"-->
+<!--                        class="img-small"-->
+<!--                        alt=""-->
+<!--                />-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--    &lt;!&ndash; ===***END OF RIGHT***=== &ndash;&gt;-->
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="./js/main.js"></script>
+<script src="./js/user.js"></script>
+<script src="./js/zoom/dist/zoom.min.js"></script>
+<script>
+    $("#sellect_all").on("click", (e) => {
+        const checkboxs = document.querySelectorAll(".cb_item");
+        for (let i = 0; i < checkboxs.length; i++) {
+            checkboxs[i].checked = e.target.checked;
+        }
+    });
+
+    $(".cb_no").on("click", (e) => {
+        if (!e.target.checked) {
+            $(".th_no").addClass("hidden");
+            $(".td_no").addClass("hidden");
+        } else {
+            $(".th_no").removeClass("hidden");
+            $(".td_no").removeClass("hidden");
+        }
+    });
+    $(".cb_img").on("click", (e) => {
+        if (!e.target.checked) {
+            $(".th_img").addClass("hidden");
+            $(".td_img").addClass("hidden");
+        } else {
+            $(".th_img").removeClass("hidden");
+            $(".td_img").removeClass("hidden");
+        }
+    });
+    $(".cb_name").on("click", (e) => {
+        if (!e.target.checked) {
+            $(".th_name").addClass("hidden");
+            $(".td_name").addClass("hidden");
+        } else {
+            $(".th_name").removeClass("hidden");
+            $(".td_name").removeClass("hidden");
+        }
+    });
+    $(".cb_usergroup").on("click", (e) => {
+        if (!e.target.checked) {
+            $(".th_usergroup").addClass("hidden");
+            $(".td_usergroup").addClass("hidden");
+        } else {
+            $(".th_usergroup").removeClass("hidden");
+            $(".td_usergroup").removeClass("hidden");
+        }
+    });
+    $(".cb_email").on("click", (e) => {
+        if (!e.target.checked) {
+            $(".th_email").addClass("hidden");
+            $(".td_email").addClass("hidden");
+        } else {
+            $(".th_email").removeClass("hidden");
+            $(".td_email").removeClass("hidden");
+        }
+    });
+    $(".cb_date-created").on("click", (e) => {
+        if (!e.target.checked) {
+            $(".th_date-created").addClass("hidden");
+            $(".td_date-created").addClass("hidden");
+        } else {
+            $(".th_date-created").removeClass("hidden");
+            $(".td_date-created").removeClass("hidden");
+        }
+    });
+    $(".cb_action").on("click", (e) => {
+        if (!e.target.checked) {
+            $(".th_action").addClass("hidden");
+            $(".td_action").addClass("hidden");
+        } else {
+            $(".th_action").removeClass("hidden");
+            $(".td_action").removeClass("hidden");
+        }
+    });
+    $(".cb_user-status").on("click", (e) => {
+        if (!e.target.checked) {
+            $(".th_user-status").addClass("hidden");
+            $(".td_user-status").addClass("hidden");
+        } else {
+            $(".th_user-status").removeClass("hidden");
+            $(".td_user-status").removeClass("hidden");
+        }
+    });
+</script>

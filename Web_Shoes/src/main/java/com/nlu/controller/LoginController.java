@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/login")
+@WebServlet(value = "/login")
 public class LoginController extends HttpServlet {
 
     @Override
@@ -33,7 +33,7 @@ public class LoginController extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("auth", user);
             if (user.getRole().equals("admin")) {
-                req.getRequestDispatcher("/admin/dashboard.jsp").forward(req, resp);
+                req.getRequestDispatcher("/admin/manager.jsp").forward(req, resp);
             }
             if (user.getRole().equals("customer")) {
                 resp.sendRedirect("/");

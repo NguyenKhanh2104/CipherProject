@@ -22,7 +22,7 @@
         }
 
         form .container {
-            width: 500px;
+            width: 570px;
             margin: auto;
             border: 1px solid #9b9b9b;
             box-shadow: 0px 0px 10px 1px #c0c0c0;
@@ -116,81 +116,88 @@
         </h1>
         <c:if test="${success.length() > 0}">
             <h1>
-                <a href="/main/login.jsp">Dăng Nhập</a>
-            </h1>
-        </c:if>
-        <span>
+                 <span>
             <%=
             request.getAttribute("mess") == null ? "" : request.getAttribute("mess")
             %>
         </span>
-<c:if test="${success.length() == null}">
-        <input
-                value="<%=
+                <a href="/main/login.jsp">Dăng Nhập</a>
+            </h1>
+            <div class="priKey" style="max-width: 536px;border: 1.5px solid #10adfb">
+                <h3>
+                    <%=
+                    request.getAttribute("messPri") == null ? "" : request.getAttribute("messPri")
+                    %>
+                </h3>
+            </div>
+        </c:if>
+        <c:if test="${success.length() == null}">
+            <input
+                    value="<%=
                     request.getParameter("username") == null ? "": request.getParameter("username")
 
                 %>"
-                type="text"
-                placeholder="Tên người dùng"
-                name="username"
-                id="username"
-                required
-        />
+                    type="text"
+                    placeholder="Tên người dùng"
+                    name="username"
+                    id="username"
+                    required
+            />
 
-        <input
-                value="<%=
+            <input
+                    value="<%=
                     request.getParameter("email") == null ? "": request.getParameter("email")
 
                 %>"
-                type="text"
-                placeholder="Email"
-                name="email"
-                id="email"
-                required
-        />
-        <input
-                value="<%=
+                    type="text"
+                    placeholder="Email"
+                    name="email"
+                    id="email"
+                    required
+            />
+            <input
+                    value="<%=
                     request.getParameter("phone") == null ? "": request.getParameter("phone")
 
                 %>"
-                type="text"
-                placeholder="Diện thoại"
-                name="phone"
-                id="phone"
-                required
-        />
-        <input
-                value="<%=
+                    type="text"
+                    placeholder="Diện thoại"
+                    name="phone"
+                    id="phone"
+                    required
+            />
+            <input
+                    value="<%=
                     request.getParameter("city") == null ? "": request.getParameter("city")
 
                 %>"
-                type="text" name="city" placeholder="Thành Phố"/>
-        <input
-                value="<%=
+                    type="text" name="city" placeholder="Thành Phố"/>
+            <input
+                    value="<%=
                     request.getParameter("district") == null ? "": request.getParameter("district")
 
                 %>"
-                type="text" name="district" placeholder="Quận/Huyện"/>
-        <input type="text" name="address-details" placeholder="Địa chỉ chi tiết"/>
-        <input
-                type="password"
-                placeholder="Mật khẩu"
-                name="password"
-                id="psw"
-                required
-        />
+                    type="text" name="district" placeholder="Quận/Huyện"/>
+            <input type="text" name="address-details" placeholder="Địa chỉ chi tiết"/>
+            <input
+                    type="password"
+                    placeholder="Mật khẩu"
+                    name="password"
+                    id="psw"
+                    required
+            />
 
-        <input
-                type="password"
-                placeholder="Xác nhận mật khẩu"
-                name="confirm-password"
-                id="psw-repeat"
-                required
-        />
-        <hr/>
-        <a href="/">Quay lại trang chủ</a>
-        <button type="submit" class="registerbtn">Đăng kí</button>
-</c:if>
+            <input
+                    type="password"
+                    placeholder="Xác nhận mật khẩu"
+                    name="confirm-password"
+                    id="psw-repeat"
+                    required
+            />
+            <hr/>
+            <a href="/">Quay lại trang chủ</a>
+            <button type="submit" class="registerbtn">Đăng kí</button>
+        </c:if>
 
     </div>
 </form>

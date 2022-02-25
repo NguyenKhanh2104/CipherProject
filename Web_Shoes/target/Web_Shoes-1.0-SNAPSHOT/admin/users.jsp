@@ -1,111 +1,48 @@
-<%@ page import="com.nlu.model.User" %>
-
-<%
-    User user = (User) session.getAttribute("auth");
-    if (user == null || !user.getRole().equals("admin")) {
-        response.sendRedirect("/");
-    }
-%>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Nhóm quản lí</title>
-    <link rel="shortcut icon" href="./images/webpage.svg" type="image/x-icon"/>
-    <link rel="stylesheet" href="./style/order.css"/>
-    <link rel="stylesheet" href="./style/main.css"/>
-    <link rel="stylesheet" href="./style/user.css"/>
-    <link rel="stylesheet" href="./js/zoom/css/zoom.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Quản lý</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/logo-icon.jpg">
+    <link rel="stylesheet" type="text/css" href="../assets/extra-libs/multicheck/multicheck.css">
+    <link href="../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="../dist/css/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styleAdmin/style.css">
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <style>
+        input#find_item {
+            width: 187px;
+        }
+        .table td, .table th {
+            padding: 0.6rem;
+            vertical-align: top;
+            /* margin-top: -14px; */
+            border-top: 1px solid #dee2e6;
+        }
+    </style>
 </head>
 <body>
-<div class="body_container">
-    <!-- ===***LEFT***=== -->
-    <div class="left_wrapper">
-        <div class="left">
-            <div class="dashboard_title">
-                <img src="./images/webpage.svg" class="img-icon" alt=""/>
-                <h2><a href="dashboard.jsp">DASH BOARD</a></h2>
-                <img
-                        src="./images/close.svg"
-                        id="close-btn"
-                        alt=""
-                        class="img-icon"
-                />
-            </div>
-            <div class="left_menu">
-                <div class="menu">
-                    <div class="menu_title">
-                        <img src="./images/received.svg" class="img-icon" alt=""/>
-                        <h4>Sản Phẩm</h4>
-                    </div>
-                    <div class="sub_menu">
-                        <a href="products.jsp">Tất Cả</a>
-                        <a href="product-new.jsp">Thêm Sản Phẩm</a>
-                        <a href="category.jsp">Doanh Mục</a>
-                    </div>
-                </div>
-                <div class="menu">
-                    <div class="menu_title">
-                        <img src="./images/profile.svg" class="img-icon" alt=""/>
-                        <h4 class="active">Người Dùng</h4>
-                    </div>
-                    <div class="sub_menu">
-                        <a href="users.jsp">Quản Trị</a>
-                        <a href="user-new.jsp">Thêm Người Dùng</a>
-                        <a href="user-setting.jsp">Cài Đặt</a>
-                        <a href="customers.jsp">Khách Hàng</a>
-                    </div>
-                </div>
-                <div class="menu">
-                    <div class="menu_title">
-                        <img src="./images/box.svg" class="img-icon" alt=""/>
-                        <h4>Đơn Hàng</h4>
-                    </div>
-                    <div class="sub_menu">
-                        <a href="order.jsp">Tất Cả Đơn Hàng</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="preloader">
+    <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
     </div>
-    <!-- ===***END OF LEFT***=== -->
+</div>
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div id="main-wrapper">
+    <jsp:include page="sidebar.jsp"/>
+    <jsp:include page="top-bar.jsp"/>
 
-    <!-- ===***RIGHT***=== -->
-    <div class="right_wrapper">
+    <div class="right_wrapper" style="flex: 8;margin-left: 17%">
         <div class="right">
-            <div class="topbar">
-                <div class="topbar_content">
-                    <div class="logo">
-                        <img
-                                src="./images/bars-solid.svg"
-                                alt=""
-                                class="img-icon"
-                                id="left_menu-toggle"
-                        />
-                        <h3>SKED</h3>
-                    </div>
-                    <div class="current_user">
-                        <h5 class="current_user-name">Duy Nguyen</h5>
-                        <img
-                                class="img-small"
-                                src="./images/wallpaperflare.com_wallpaper (1).jpg"
-                                alt=""
-                        />
-                        <div class="current_user-sub-menu">
-                            <a href=""
-                            ><img src="./images/settings.svg" alt=""/>Cài Đặt</a
-                            >
-                            <a href="login.jsp"
-                            ><img src="./images/logout.svg" alt=""/> Đăng Xuất
-                            </a>
-                            <a href="../index.jsp"> THOÁT </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end of right topbar -->
             <div class="right_content">
                 <div class="view_option">
                     <div class="option_details">
@@ -161,7 +98,7 @@
                     <div>
                         <h4>Tất Cả Người Dùng</h4>
                     </div>
-                    <div>
+                    <div id="seachUser" style="margin : 10px 10px">
                         <input
                                 placeholder="Nhập thông tin user cần tìm"
                                 class="find_item"
@@ -192,55 +129,46 @@
                             <button class="btn_apply">Thực Hiện</button>
                         </div>
                     </div>
-                    <table>
-                        <thead>
+                    <table class="table table-hover">
+                        <thead class="check" style="margin: 0px 5px 0px 5px">
                         <tr>
                             <th><input type="checkbox" name="" id="sellect_all"/></th>
-                            <th class="th_no">STT</th>
-                            <th class="th_img">
-                                <img
-                                        data-action="zoom"
-                                        src="./images/image-gallery.svg"
-                                        style="width: 1.25rem"
-                                        alt=""
-                                />
-                            </th>
-                            <th class="th_name">Tên</th>
-                            <th class="th_usergroup">Nhóm Người Dùng</th>
-                            <th class="th_email">Email</th>
-                            <th class="th_date-created">Ngày Tạo</th>
-                            <th class="th_user-status">Trạng Thái</th>
-                            <th colspan="3" class="th_action">Thao Tác</th>
+                            <th class="thead">UserID</th>
+                            <th class="thead" style="margin-left: 100px">UserKey</th>
+                            <th class="thead">UserName</th>
+                            <th class="thead" style="margin-left: 100px">Password</th>
+                            <th class="thead">Email</th>
+                            <th class="thead">Phone</th>
+                            <th class="thead">Role</th>
+                            <th class="thead">Public Key</th>
+                            <th colspan="3" class="th_action">Option</th>
                         </tr>
                         </thead>
                         <tbody id="table">
-                        <tr>
-                            <td><input type="checkbox" class="cb_item"/></td>
-                            <td class="td_no">1</td>
-                            <td class="td_img">
-                                <img
-                                        data-action="zoom"
-                                        src="./images/img01.jpg"
-                                        class="img-small"
-                                        alt=""
-                                />
-                            </td>
-                            <td class="td_name">duy nguyen</td>
-                            <td class="td_usergroup">Admin</td>
-                            <td class="td_email">nguyenkhanhduy21123@gmail.com</td>
-                            <td class="td_date-created">22/12/1200</td>
-                            <td class="td_user-status">Hoạt động</td>
-                            <td class="button_action-container td_action">
-                                <button class="btn_action btn_quick-edit">
-                                    <a href="user-setting.jsp">Cài Đặt</a>
-                                </button>
-                                <button class="btn_action btn_user-delete">
-                                    <a href="">Xóa</a>
-                                </button>
-                            </td>
-                        </tr>
+                        <c:forEach items="${listU}" var="o">
+                            <tr>
+                                <td><input type="checkbox" class="cb_item"/></td>
+                                <td>${o.id}</td>
+                                <td>${o.key}</td>
+                                <td>${o.username}</td>
+                                <td>${o.password}</td>
+                                <td>${o.email}</td>
+                                <td>${o.phone}</td>
+                                <td>${o.role}</td>
+                                <td>${o.password}</td>
+                                <td class="button_action-container td_action">
+                                    <button class="btn_action btn_quick-edit">
+                                        <a href="user-setting.jsp">Cài Đặt</a>
+                                    </button>
+                                    <button class="btn_action btn_user-delete">
+                                        <a href="">Xóa</a>
+                                    </button>
+                                </td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
+
                     <div class="action_bar mt-1">
                         <div class="select">
                             <select name="action">
@@ -267,91 +195,199 @@
             </div>
         </div>
     </div>
-    <!-- ===***END OF RIGHT***=== -->
-</div>
-<script src="./js/main.js"></script>
-<script src="./js/user.js"></script>
-<script src="./js/zoom/dist/zoom.min.js"></script>
-<script>
-    $("#sellect_all").on("click", (e) => {
-        const checkboxs = document.querySelectorAll(".cb_item");
-        for (let i = 0; i < checkboxs.length; i++) {
-            checkboxs[i].checked = e.target.checked;
-        }
-    });
+    <script src="./js/main.js"></script>
 
-    $(".cb_no").on("click", (e) => {
-        if (!e.target.checked) {
-            $(".th_no").addClass("hidden");
-            $(".td_no").addClass("hidden");
-        } else {
-            $(".th_no").removeClass("hidden");
-            $(".td_no").removeClass("hidden");
-        }
-    });
-    $(".cb_img").on("click", (e) => {
-        if (!e.target.checked) {
-            $(".th_img").addClass("hidden");
-            $(".td_img").addClass("hidden");
-        } else {
-            $(".th_img").removeClass("hidden");
-            $(".td_img").removeClass("hidden");
-        }
-    });
-    $(".cb_name").on("click", (e) => {
-        if (!e.target.checked) {
-            $(".th_name").addClass("hidden");
-            $(".td_name").addClass("hidden");
-        } else {
-            $(".th_name").removeClass("hidden");
-            $(".td_name").removeClass("hidden");
-        }
-    });
-    $(".cb_usergroup").on("click", (e) => {
-        if (!e.target.checked) {
-            $(".th_usergroup").addClass("hidden");
-            $(".td_usergroup").addClass("hidden");
-        } else {
-            $(".th_usergroup").removeClass("hidden");
-            $(".td_usergroup").removeClass("hidden");
-        }
-    });
-    $(".cb_email").on("click", (e) => {
-        if (!e.target.checked) {
-            $(".th_email").addClass("hidden");
-            $(".td_email").addClass("hidden");
-        } else {
-            $(".th_email").removeClass("hidden");
-            $(".td_email").removeClass("hidden");
-        }
-    });
-    $(".cb_date-created").on("click", (e) => {
-        if (!e.target.checked) {
-            $(".th_date-created").addClass("hidden");
-            $(".td_date-created").addClass("hidden");
-        } else {
-            $(".th_date-created").removeClass("hidden");
-            $(".td_date-created").removeClass("hidden");
-        }
-    });
-    $(".cb_action").on("click", (e) => {
-        if (!e.target.checked) {
-            $(".th_action").addClass("hidden");
-            $(".td_action").addClass("hidden");
-        } else {
-            $(".th_action").removeClass("hidden");
-            $(".td_action").removeClass("hidden");
-        }
-    });
-    $(".cb_user-status").on("click", (e) => {
-        if (!e.target.checked) {
-            $(".th_user-status").addClass("hidden");
-            $(".td_user-status").addClass("hidden");
-        } else {
-            $(".th_user-status").removeClass("hidden");
-            $(".td_user-status").removeClass("hidden");
-        }
-    });
+    <script src="js/dasboard.js"></script>
+    <script>
+        var ctx = document.getElementById("myChart").getContext("2d");
+        var myChart = new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                ],
+                datasets: [
+                    {
+                        label: "Ẩn",
+                        data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: [
+                            "rgba(255, 99, 132, 0.2)",
+                            "rgba(54, 162, 235, 0.2)",
+                            "rgba(255, 206, 86, 0.2)",
+                            "rgba(75, 192, 192, 0.2)",
+                            "rgba(153, 102, 255, 0.2)",
+                            "rgba(255, 159, 64, 0.2)",
+                        ],
+                        borderColor: [
+                            "rgba(255, 99, 132, 1)",
+                            "rgba(54, 162, 235, 1)",
+                            "rgba(255, 206, 86, 1)",
+                            "rgba(75, 192, 192, 1)",
+                            "rgba(153, 102, 255, 1)",
+                            "rgba(255, 159, 64, 1)",
+                        ],
+                        borderWidth: 1,
+                    },
+                ],
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Biểu đồ thể hiện doanh thu trong 6 tháng",
+                    position: "bottom",
+                },
+                scales: {
+                    yAxes: [
+                        {
+                            ticks: {
+                                beginAtZero: true,
+                            },
+                        },
+                    ],
+                },
+            },
+        });
+
+        new Chart(document.getElementById("pie-chart"), {
+            type: "pie",
+            data: {
+                labels: [
+                    "Jordan 1 Low",
+                    "Chuck 70s",
+                    "AirForce 1",
+                    "Jordan1 Mid Chicago",
+                    "Adidas Human v3",
+                ],
+                datasets: [
+                    {
+                        label: "",
+                        backgroundColor: [
+                            "#3e95cd",
+                            "#8e5ea2",
+                            "#3cba9f",
+                            "#e8c3b9",
+                            "#c45850",
+                        ],
+                        data: [2478, 5267, 734, 784, 433],
+                    },
+                ],
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Các Sản Phẩm Bán Chạy trong tháng",
+                    position: "bottom",
+                },
+            },
+        });
+    </script>
+    <script>
+        const showSettingView = document.querySelector(".show_setting");
+        let isShow = false;
+        showSettingView.addEventListener("click", (e) => {
+            switch (isShow) {
+                case false:
+                    document
+                        .querySelector(".option_details")
+                        .classList.add("show_setting-info");
+                    isShow = true;
+                    break;
+
+                default:
+                    document
+                        .querySelector(".option_details")
+                        .classList.remove("show_setting-info");
+                    isShow = false;
+                    break;
+            }
+        });
+
+        $(".cb_user-access").on("click", (e) => {
+            if (!e.target.checked) {
+                $(".users_access").addClass("hidden");
+            } else {
+                $(".users_access").removeClass("hidden");
+            }
+        });
+
+        $(".cb_total-price").on("click", (e) => {
+            if (!e.target.checked) {
+                $(".sales_progress").addClass("hidden");
+            } else {
+                $(".sales_progress").removeClass("hidden");
+            }
+        });
+
+        $(".cb_total-order").on("click", (e) => {
+            if (!e.target.checked) {
+                $(".order_count").addClass("hidden");
+            } else {
+                $(".order_count").removeClass("hidden");
+            }
+        });
+        $(".cb_table-details").on("click", (e) => {
+            if (!e.target.checked) {
+                $(".card_details-container").addClass("hidden");
+            } else {
+                $(".card_details-container").removeClass("hidden");
+            }
+        });
+
+        $(".cb_bar-chart").on("click", (e) => {
+            if (!e.target.checked) {
+                $(".barchart-container").addClass("hidden");
+            } else {
+                $(".barchart-container").removeClass("hidden");
+            }
+        });
+        $(".cb_pie-chart").on("click", (e) => {
+            if (!e.target.checked) {
+                $(".piechart-container").addClass("hidden");
+            } else {
+                $(".piechart-container").removeClass("hidden");
+            }
+        });
+        $("#sellect_all").on("click", (e) => {
+            const checkboxs = document.querySelectorAll(".cb_item");
+            for (let i = 0; i < checkboxs.length; i++) {
+                checkboxs[i].checked = e.target.checked;
+            }
+        });
+    </script>
+</div>
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- All Jquery -->
+<!-- ============================================================== -->
+<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="../assets/libs/popper.js/dist/umd/popper.min.js"></script>
+<script src="../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+<script src="../assets/extra-libs/sparkline/sparkline.js"></script>
+<!--Wave Effects -->
+<script src="../dist/js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="../dist/js/sidebarmenu.js"></script>
+<!--Custom JavaScript -->
+<script src="../dist/js/custom.min.js"></script>
+<!-- this page js -->
+<script src="../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+<script src="../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+<script src="../assets/extra-libs/DataTables/datatables.min.js"></script>
+<script>
+    /****************************************
+     *       Basic Table                   *
+     ****************************************/
+    $('#zero_config').DataTable();
 </script>
 </body>
 </html>

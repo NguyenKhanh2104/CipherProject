@@ -1,12 +1,14 @@
 package com.nlu.service;
 
 import com.nlu.model.ShopDetails;
+import com.nlu.model.User;
 import com.nlu.repository.Repository;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.List;
 
 import static com.nlu.db.Datasource.getConnection;
@@ -59,5 +61,12 @@ public class ShopDetailsService implements Repository<ShopDetailsService> {
     @Override
     public void add(ShopDetailsService shopDetailsService) {
 
+    }
+
+    public static void main(String[] args) {
+        Date date = new Date();
+        String mhd = "HD" + date.getTime();
+        User u =  new User();
+        System.out.println(u.toMd5(mhd));
     }
 }

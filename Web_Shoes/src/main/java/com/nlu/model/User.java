@@ -51,6 +51,7 @@ public class User {
             e.printStackTrace();
         }
         this.password  = result;
+        System.out.println(result);
     }
 
     public void setUserKey (String name, String password){
@@ -68,4 +69,9 @@ public class User {
         this.key  = result;
     }
 
+    public static void main(String[] args) {
+        User u = new User();
+        System.out.println(u.toMd5("npk"));
+        u.setPasswordMD5("npk");
+    }
 }

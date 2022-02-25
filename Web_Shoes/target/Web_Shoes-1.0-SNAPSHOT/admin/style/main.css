@@ -78,7 +78,7 @@ body {
   height: 100vh;
 }
 .body_container {
-  display: flex;
+  /*display: flex;*/
   height: 100%;
 }
 #left_menu-toggle {
@@ -161,9 +161,6 @@ body {
 /* ******END OF LEFT******* */
 
 /* *****RIGHT************* */
-.right_wrapper {
-  flex: 8;
-}
 .right_wrapper_content {
   display: flex;
   flex-direction: column;

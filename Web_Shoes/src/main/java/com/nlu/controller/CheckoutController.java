@@ -42,7 +42,7 @@ public class CheckoutController extends HttpServlet {
         if (cart.getData().size() > 0) {
             try {
                 Date date = new Date();
-                String mhd = "" + date.getTime();
+                String mhd = "HD" + date.getTime();
                 User u = new User();
                 if (userService.exitsUsername(fullName)) {
                     u.setId(userService.getUserIDByName(fullName));

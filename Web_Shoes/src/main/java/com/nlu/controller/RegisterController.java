@@ -1,7 +1,9 @@
 package com.nlu.controller;
 
+import com.nlu.algorithms.algorithms.Asymmetric;
 import com.nlu.model.User;
 import com.nlu.service.UserService;
+import com.nlu.service.test;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.KeyPair;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 
 @WebServlet("/register")
 public class RegisterController extends HttpServlet {
@@ -18,6 +23,7 @@ public class RegisterController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
+        Asymmetric as = new Asymmetric("RSA", 512);
         String username = req.getParameter("username");
         String email = req.getParameter("email");
         String phone = req.getParameter("phone");
@@ -44,7 +50,7 @@ public class RegisterController extends HttpServlet {
         }
         User user = new User();
         user.setId(0);
-        user.setUserKey(username,password);
+        user.setUserKey(username, password);
         user.setUsername(username);
         user.setEmail(email);
         user.setPhone(phone);
@@ -53,7 +59,20 @@ public class RegisterController extends HttpServlet {
         user.setAdddressDetails(addressDetails);
         user.setPasswordMD5(password);
         userService.save(user, "customer");
-        req.setAttribute("register-success","success");
-        req.getRequestDispatcher("/main/register.jsp").forward(req,resp);
+        req.setAttribute("register-success", "success");
+        String pri = null;
+        String pub = null;
+        try {
+            KeyPair keypair = as.genKey();
+            pri = Base64.getEncoder().encodeToString(keypair.getPrivate().getEncoded());
+            pub = Base64.getEncoder().encodeToString(keypair.getPublic().getEncoded());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        test t = new test();
+        String result = t.splitEqually(pri, 45);
+        req.setAttribute("messPri", "private key : " + "\n" + result);
+
+        req.getRequestDispatcher("/main/register.jsp").forward(req, resp);
     }
 }

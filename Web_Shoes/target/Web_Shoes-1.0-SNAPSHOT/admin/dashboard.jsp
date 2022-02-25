@@ -1,4 +1,4 @@
-
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ page import="com.nlu.model.User" %>
 
 <%
@@ -7,7 +7,7 @@
     response.sendRedirect("/");
   }
 %>
-<%@ page contentType="text/html;charset=UTF-8"%>
+
 <html>
   <head>
     <title>Dashboard</title>
@@ -21,7 +21,55 @@
   <body>
     <div class="body_container">
       <!-- ===***LEFT***=== -->
-    <jsp:include page="sidebar.jsp"/>
+<%--    <jsp:include page="sidebar.jsp"/>--%>
+      <div class="left_wrapper">
+        <div class="left">
+          <div class="dashboard_title">
+            <img src="/admin/images/webpage.svg" class="img-icon" alt=""/>
+            <h2><a href="dashboard.jsp">DASH BOARD</a></h2>
+            <img
+                    src="/admin/images/close.svg"
+                    id="close-btn"
+                    alt=""
+                    class="img-icon"
+            />
+          </div>
+          <div class="left_menu">
+            <div class="menu">
+              <div class="menu_title">
+                <img src="/admin/images/received.svg" class="img-icon" alt=""/>
+                <h4 class="active">Sản Phẩm</h4>
+              </div>
+              <div class="sub_menu">
+                <a href="/admin/products.jsp">Tất Cả</a>
+                <a href="/admin/product-new.jsp" class="active">Thêm Sản Phẩm</a>
+                <a href="/admin/category.jsp">Doanh Mục</a>
+              </div>
+            </div>
+            <div class="menu">
+              <div class="menu_title">
+                <img src="/admin/images/profile.svg" class="img-icon" alt=""/>
+                <h4>Người Dùng</h4>
+              </div>
+              <div class="sub_menu">
+                <a href="/admin/users.jsp">Quản Trị</a>
+                <a href="/admin/new-admin">Thêm Người Dùng</a>
+                <%--                    <a href="/admin/user-setting.jsp">Cài Đặt</a>--%>
+                <%--                    <a href="/admin/customers.jsp">Khách Hàng</a>--%>
+              </div>
+            </div>
+            <div class="menu">
+              <div class="menu_title">
+                <img src="/admin/images/box.svg" class="img-icon" alt=""/>
+                <h4>Đơn Hàng</h4>
+              </div>
+              <div class="sub_menu">
+                <a href="/admin/order.jsp">Tất Cả Đơn Hàng</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- ===***END OF LEFT***=== -->
 
       <!-- ===***RIGHT***=== -->
@@ -200,7 +248,7 @@
               </div>
             </div>
 
-            <!-- 
+            <!--
              -->
             <div
               class="barchart-container"
