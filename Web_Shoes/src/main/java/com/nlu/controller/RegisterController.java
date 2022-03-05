@@ -48,18 +48,6 @@ public class RegisterController extends HttpServlet {
             req.getRequestDispatcher("/main/register.jsp").forward(req, resp);
             return;
         }
-        User user = new User();
-        user.setId(0);
-        user.setUserKey(username, password);
-        user.setUsername(username);
-        user.setEmail(email);
-        user.setPhone(phone);
-        user.setCity(city);
-        user.setDistric(district);
-        user.setAdddressDetails(addressDetails);
-        user.setPasswordMD5(password);
-        userService.save(user, "customer");
-        req.setAttribute("register-success", "success");
         String pri = null;
         String pub = null;
         try {
@@ -70,8 +58,22 @@ public class RegisterController extends HttpServlet {
             e.printStackTrace();
         }
         test t = new test();
-        String result = t.splitEqually(pri, 45);
-        req.setAttribute("messPri", "private key : " + "\n" + result);
+//        String result = t.splitEqually(pri, 45);
+//        result.split(" ");
+        User user = new User();
+        user.setId(0);
+        user.setUserKey(username, password);
+        user.setUsername(username);
+        user.setEmail(email);
+        user.setPhone(phone);
+        user.setCity(city);
+        user.setDistric(district);
+        user.setAdddressDetails(addressDetails);
+        user.setPasswordMD5(password);
+        userService.save(user, "customer", pub);
+        req.setAttribute("register-success", "success");
+
+        req.setAttribute("messPri", "private key : " + "\n" + pri);
 
         req.getRequestDispatcher("/main/register.jsp").forward(req, resp);
     }

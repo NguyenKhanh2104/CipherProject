@@ -41,7 +41,7 @@ public class NewAdminUser extends HttpServlet {
         user.setUsername(username);
         user.setEmail(email);
         user.setPasswordMD5(password);
-        userService.save(user, "admin");
+        userService.save(user, "admin",null);
         req.setAttribute("register-success", "success");
         req.getRequestDispatcher("/admin/user-new.jsp").forward(req, resp);
     }

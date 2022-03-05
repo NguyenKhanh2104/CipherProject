@@ -5,8 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class test {
-    public String splitEqually(String text, int size) {
 
+    public String splitEqually(String text, int size) {
+        int count = 0;
+        String total = null;
         String result = null;
         StringBuilder sb = new StringBuilder();
         List<String> ret = new ArrayList<String>((text.length() + size - 1) / size);
@@ -16,45 +18,50 @@ public class test {
                 sb.append(s);
                 sb.append("\n");
             }
-            result = sb.toString();
+            total = sb.toString();
             ret.remove(text.substring(start, Math.min(text.length(), start + size)));
-
+//            result = total.split("\n");
         }
-        return result;
-//        String result = null;
-//        char[] c = new char[text.length() + size - 1 / size];
-//        c = text.toCharArray();
-//        for (int i = 0; i < text.length(); i+=48) {
-//
-//           result = new Strin   g(c);
-//
-//        }
-//        return result;
+        return total;
     }
 
-//    public void test() {
-//
-//        ArrayList<String> list = new ArrayList<String>();
-//        list.add("one");
-//        list.add("two");
-//        list.add("three");
-//
-//        StringBuilder sb = new StringBuilder();
-//        for (
-//                String s : list) {
-//            sb.append(s);
-//            sb.append("\t");
-//        }
-//
-//        System.out.println(sb.toString());
-//    }
+    public void checkString(String text) {
+        System.out.println(text);
+        text = text.replaceAll(" ", "");
+        System.out.println(text);
+    }
+
+    public int countChar(String te) {
+        int count = 0;
+        for (int i = 0; i < te.length(); i++) {
+            count++;
+        }
+        return count;
+    }
 
     public static void main(String[] args) {
-        String pri = "MIBUwIBADANBgkqhkiG9w0BAQEFAASCAT0wggE5AgEAAkEAwwZh91MNL0GUN7wC5Bzd6LN6rw5O1bRj8ISI+jYcKYwAWbwRBUTbYYA2zXP4N9shl0vizN5dSofv9IA569E74QIDAQABAkA+wnUQRDe91idPvGnOurmkatvXilceDqZEe2Kp5MUgxs1hs7fknNUWyHRMcwyb43u0iDWkqaVJ392l2byypmpAiEA6rkIWBObK96WZ1GAzNw5Oq33tiQR4reyNixqaIbto5MCIQDUtBUc4ECxXmZuyvvqH8C+JLvNLyvTi3FQ3MxSRjzOwIgQJizhym+JpCXa8+uVrK0vUVrSqEamv5a+TW4AxQ/CikCIBpjuqNNbU0tuPeEzF+wlQmGU5yP+3T4ix81Th5oRksvAiB+zvbNXVPg8PKmukJ9qR6LUB19Sui6mir/f1FqobHJiA==";
+        String pri = "MIIBVAIBADANBgkqhkiG9w0BAQEFAASCAT4wggE6AgEAAkEAx+IvVvf5f5gUElrYeDO1sk8MEmKKWYrxp3mHegssDPDB8mzm2Z33tl9sNGE556g3Oew3REv5XsQ8ceMFRLbmIwIDAQABAkANQOSlrhyXhsRx8R8gXUFjeNVSlMEardlXIvpGL950XxZKc3BWvvZ4cf+5a+lNYoKAwS2w8tGf/KanhHm68RBpAiEA9gE9b7zFYNukOHSZDXuDiFxVJkt+L07mA2Wjy5gPB1sCIQDQATmrWzcwPGiKDyg+ufn6lK0pS3xPcvhuHgBLDuce2QIgd8HixqJ+88f5CgK4/3dBcQCB80KNCzq9fqncMyCzMEECIQClMVPrkvWxiUg83OzJZEnziEA9m4WOU3CZg5oYAi3rgQIgGc5IYfXVu3l2gZmXpdJ5nJ0V3LFcs5dwQIAQR8ces2I=";
+        String pub = "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMCnsWbzrG0vZ9+whuL6Pfm8Rh2VVfbhryuuKcuih135QHwjhHGI8g8tmPrDzDigH43raCdyEHCc72uqBpuNePcCAwEAAQ==";
         test t = new test();
-        System.out.println(t.splitEqually(pri, 48));
-//        t.test();
+        System.out.print(t.splitEqually(pri, 45));
+        System.out.println(t.countChar(t.splitEqually(pri, 45)));
+//        t.checkString("anh khanh dep trai");
+//        StringBuilder sb = new StringBuilder("");
+//        sb.append(" aaa \n"); sb.append(" bbbbb \n");
+//        sb.append("ccccc \n"); sb.append("\n");
+//        sb.append("ddd\r\n"); sb.append("\r\n");
+//        sb.append("eee\r\n"); String text = sb.toString();
+//        System.out.println("----Du lieu cu----");
+//        System.out.println(text);
+//        System.out.println("----- Sau khi split ----");
+//        int count = 1;
+//        String lines = String.valueOf(text.split("\\r?\\n"));
+//        for (String line : lines) {
+//            System.out.println("Line" + count++ + " : "+ line);
+//        }
 
-    }
+
+
+}
 
 }

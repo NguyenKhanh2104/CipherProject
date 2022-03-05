@@ -123,12 +123,20 @@
         </span>
                 <a href="/main/login.jsp">Dăng Nhập</a>
             </h1>
-            <div class="priKey" style="max-width: 536px;border: 1.5px solid #10adfb">
+            <div class="priKey" style="word-wrap: break-word;max-width: 536px;border: 1.5px solid #10adfb">
                 <h3>
                     <%=
                     request.getAttribute("messPri") == null ? "" : request.getAttribute("messPri")
                     %>
                 </h3>
+
+<%--    <input--%>
+<%--            value="<%=--%>
+<%--                     request.getAttribute("messPri") == null ? "" : request.getAttribute("messPri")--%>
+
+<%--                %>"--%>
+<%--            type="text"--%>
+<%--    />--%>
             </div>
         </c:if>
         <c:if test="${success.length() == null}">

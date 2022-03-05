@@ -23,6 +23,7 @@ public class User {
     private String distric;
     private String adddressDetails;
     private String role;
+    private String PublicKey;
 
 
     public String toMd5(String str){

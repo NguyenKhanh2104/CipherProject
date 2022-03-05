@@ -33,7 +33,8 @@ public class UserService {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getString(9),
-                        rs.getString(10));
+                        rs.getString(10),
+                        rs.getString(11));
                 user.add(u);
             }
 
@@ -65,7 +66,8 @@ public class UserService {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getString(9),
-                        rs.getString(10));
+                        rs.getString(10),
+                        rs.getString(11));
             }
             return user;
         } catch (SQLException throwables) {
@@ -74,9 +76,9 @@ public class UserService {
         return null;
     }
 
-    public void save(User user, String role) {
+    public void save(User user, String role,String publicKey) {
         Connection conn = getConnection();
-        String query = "INSERT INTO `user`( `user_key`, `username`, `password`, `email`, `phone`, `city`, `district`, `address_details`, `role`) VALUES (?,?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO `user`( `user_key`, `username`, `password`, `email`, `phone`, `city`, `district`, `address_details`, `role`,`publicKey`) VALUES (?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, user.getKey());
@@ -88,6 +90,7 @@ public class UserService {
             ps.setString(7, user.getDistric());
             ps.setString(8, user.getAdddressDetails());
             ps.setString(9, role);
+            ps.setString(10, publicKey);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -110,7 +113,8 @@ public class UserService {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getString(9),
-                        rs.getString(10)
+                        rs.getString(10),
+                        rs.getString(11)
                 );
             }
             return user.getId();
