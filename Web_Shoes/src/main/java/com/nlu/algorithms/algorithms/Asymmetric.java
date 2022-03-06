@@ -44,19 +44,18 @@ public class Asymmetric {
 		return key.generatePublic(keySpec);
 	}
 
-	public String encrypt(String plainText, String publKey) throws Exception {
-		PublicKey publicKey = genPublicKey(publKey);
+	public String encrypt(String plainText, String priKey) throws Exception {
+		PrivateKey privateKey = genPrivateKey(priKey);
 		Cipher cipher = Cipher.getInstance(algorithm);
-		cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+		cipher.init(Cipher.ENCRYPT_MODE, privateKey);
 		byte[] encryptText = cipher.doFinal(plainText.getBytes());
 		return Base64.getEncoder().encodeToString(encryptText);
 	}
-
-	public String decrypt(String encryptText, String privKey) throws Exception {
-		PrivateKey privateKey = genPrivateKey(privKey);
+	public String decrypt(String encryptText, String pubKey) throws Exception {
+		PublicKey publicKey = genPublicKey(pubKey);
 		byte[] textBytes = Base64.getDecoder().decode(encryptText);
 		Cipher cipher = Cipher.getInstance(algorithm);
-		cipher.init(Cipher.DECRYPT_MODE, privateKey);
+		cipher.init(Cipher.DECRYPT_MODE, publicKey);
 		byte[] decryptText = cipher.doFinal(textBytes);
 		return new String(decryptText);
 	}

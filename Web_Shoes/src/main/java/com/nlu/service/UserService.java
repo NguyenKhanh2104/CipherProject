@@ -123,6 +123,32 @@ public class UserService {
         }
         return 0;
     }
+    public String getUserkeyByName(String username) {
+        Connection conn = getConnection();
+        String query = "SELECT * FROM user WHERE username= ?";
+        User user = new User();
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                user = new User(rs.getInt(1), rs.getString(2), rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getString(11)
+                );
+            }
+            return user.getKey();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
     public boolean exitsUsername(String userName) {
         Connection conn = getConnection();
         String query = "SELECT username from user WHERE username=?";

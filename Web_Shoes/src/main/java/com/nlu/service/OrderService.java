@@ -1,8 +1,11 @@
 package com.nlu.service;
 
+import com.nlu.algorithms.algorithms.Hash;
 import com.nlu.model.Order;
 import com.nlu.repository.Repository;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -36,9 +39,11 @@ public class OrderService implements Repository<OrderService> {
     public void add(OrderService orderService) {
 
     }
+
+
     public void save(Order order){
         Connection conn = getConnection();
-        String query = "INSERT INTO `order` VALUES (?,?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO `order` VALUES (?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, order.getOrderId());
@@ -50,10 +55,12 @@ public class OrderService implements Repository<OrderService> {
             ps.setString(7,order.getEmail());
             ps.setString(8,order.getCity());
             ps.setString(9,order.getPhone());
+            ps.setString(10,order.getPhone());
             ps.executeUpdate();
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 }

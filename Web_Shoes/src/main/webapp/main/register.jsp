@@ -129,14 +129,6 @@
                     request.getAttribute("messPri") == null ? "" : request.getAttribute("messPri")
                     %>
                 </h3>
-
-<%--    <input--%>
-<%--            value="<%=--%>
-<%--                     request.getAttribute("messPri") == null ? "" : request.getAttribute("messPri")--%>
-
-<%--                %>"--%>
-<%--            type="text"--%>
-<%--    />--%>
             </div>
         </c:if>
         <c:if test="${success.length() == null}">

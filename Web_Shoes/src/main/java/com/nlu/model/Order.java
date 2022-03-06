@@ -20,6 +20,7 @@ public class Order {
     private String email;
     private String city;
     private String phone;
+    private String sign;
 
 
 
