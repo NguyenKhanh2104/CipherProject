@@ -1,6 +1,5 @@
 package com.nlu.controller;
 
-import com.nlu.algorithms.algorithms.Hash;
 import com.nlu.model.*;
 import com.nlu.service.OrderDetailsService;
 import com.nlu.service.OrderService;
@@ -8,7 +7,6 @@ import com.nlu.service.SignService;
 import com.nlu.service.UserService;
 import lombok.SneakyThrows;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,22 +40,24 @@ public class CheckoutController extends HttpServlet {
         HttpSession session = req.getSession();
         Cart cart = Cart.getCart(session);
         HashMap<Integer, CartItem> cart1 = cart.getCart();
-        String mhd = null;
         SignService sign = new SignService();
         if (cart.getData().size() > 0) {
             try {
                 Date date = new Date();
-                 mhd = "HD" + date.getTime();
+                String da = String.valueOf(date.getTime());
+                String mhd = "HD" + da;
                 User u = new User();
                 if (userService.exitsUsername(fullName)) {
                     u.setId(userService.getUserIDByName(fullName));
                     u.setKey(userService.getUserkeyByName(fullName));
-                    req.setAttribute("key",sign.hashIDOrder(mhd + u.getKey()));
-                    req.setAttribute("idOrder",mhd);
+                    req.setAttribute("idOrder", mhd);
+                    req.setAttribute("key", sign.hashDataSign(mhd + u.getKey()));
                 } else {
                     req.setAttribute("mess1", "User không tồn tại");
                 }
-                Order o = new Order(mhd, address, new Timestamp(new Date().getTime()), 0, note, u, email, city, phone, "");
+                String dataSign = sign.hashDataSign(mhd + u.getKey());
+                Order o = new Order(mhd, address, new Timestamp(new Date().getTime()), 0, note, u.getId(), email, city, phone,
+                         "",dataSign);
                 order.save(o);
 
                 for (Map.Entry<Integer, CartItem> ds : cart1.entrySet()) {

@@ -16,12 +16,12 @@ public class Order {
     private Timestamp date;
     private Integer status;
     private String note;
-    private User user;
+    private int user_id;
     private String email;
     private String city;
     private String phone;
     private String sign;
-
+    private String dataSign;
 
 
 }

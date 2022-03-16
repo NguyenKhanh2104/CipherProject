@@ -114,10 +114,14 @@
 <%--products--%>
 <section class="ab-info-main py-md-5 py-4">
     <form class="signForm" action="/main/SignController">
+        <%=
+        request.getAttribute("err") == null ? "" : request.getAttribute("err")
+        %>
         <div class="form-group row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Dữ liệu ký : </label>
             <div class="col-sm-10">
                 <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<%= request.getAttribute("key")%>">
+            <%= request.getAttribute("idOrder")%>
             </div>
         </div>
         <div class="form-group row">

@@ -1,5 +1,4 @@
 package com.nlu.algorithms.swing;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -46,7 +45,7 @@ public class AsymmetricPanel extends JPanel {
 	private JComboBox jcbKey;
 	private JComboBox<Object> jcbAlg;
 	private JTextArea  arInput, arOutput,arPri, arPub;
-	private JLabel publKeylbl, privKeylbl;
+	private JLabel priKeylbl, pubKeylbl;
 	private String inputText, keyText, outputText, keyPriText, keyPubText, inputTextEn, keyTextEn;
 	private File keyPri, keyPub, keyFile, inputFile, outputFile;
 	private JRadioButton radBtnEn, radBtnDe;
@@ -86,9 +85,9 @@ public class AsymmetricPanel extends JPanel {
 		tfKeyFile.setEnabled(false);
 		tfKeyFile.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		tfKeyFile.setPreferredSize(new Dimension(255, 30));
-		publKeylbl = new JLabel("Please enter publicKey");
-		privKeylbl = new JLabel("Please enter privateKey");
-		privKeylbl.setVisible(false);
+		priKeylbl = new JLabel("Please enter privateKey");
+		pubKeylbl = new JLabel("Please enter publicKey");
+		pubKeylbl.setVisible(false);
 
 		JPanel panGetKey = new JPanel();
 		TitledBorder titledBorder6 = BorderFactory.createTitledBorder("Key");
@@ -133,26 +132,26 @@ public class AsymmetricPanel extends JPanel {
 				tfOutputFile.setText("");
 				if (!tfKey.getText().equals(null)) {
 					keyBtn.setSelected(true);
-					tfKey.add(publKeylbl);
-					privKeylbl.setVisible(false);
-					privKeylbl.setEnabled(false);
-					publKeylbl.setVisible(true);
-					publKeylbl.setEnabled(true);
+					tfKey.add(priKeylbl);
+					pubKeylbl.setVisible(false);
+					pubKeylbl.setEnabled(false);
+					priKeylbl.setVisible(true);
+					priKeylbl.setEnabled(true);
 					tfKey.addKeyListener(new KeyAdapter() {
 
 						@Override
 						public void keyTyped(KeyEvent e) {
 							if (e.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
-								publKeylbl.setVisible(false);
-								publKeylbl.setEnabled(false);
+								priKeylbl.setVisible(false);
+								priKeylbl.setEnabled(false);
 							}
 							if (tfKey.getText().equals("")) {
-								privKeylbl.setEnabled(false);
-								privKeylbl.setVisible(false);
-								publKeylbl.setEnabled(true);
-								publKeylbl.setVisible(true);
+								pubKeylbl.setEnabled(false);
+								pubKeylbl.setVisible(false);
+								priKeylbl.setEnabled(true);
+								priKeylbl.setVisible(true);
 								if (tfKey.getText() != "") {
-									publKeylbl.setEnabled(false);
+									priKeylbl.setEnabled(false);
 								}
 							}
 						}
@@ -165,14 +164,14 @@ public class AsymmetricPanel extends JPanel {
 		});
 
 		if (radBtnEn.isSelected()) {
-			privKeylbl.setVisible(false);
-			privKeylbl.setEnabled(false);
-			tfKey.add(publKeylbl);
+			pubKeylbl.setVisible(false);
+			pubKeylbl.setEnabled(false);
+			tfKey.add(priKeylbl);
 
 		} else {
-			publKeylbl.setVisible(false);
-			publKeylbl.setEnabled(false);
-			tfKey.add(privKeylbl);
+			priKeylbl.setVisible(false);
+			priKeylbl.setEnabled(false);
+			tfKey.add(pubKeylbl);
 		}
 
 		radBtnDe = new JRadioButton("Decrypt");
@@ -193,31 +192,31 @@ public class AsymmetricPanel extends JPanel {
 				tfInputFile.setText("");
 				tfOutputFile.setText("");
 				if(!tfKey.getText().equals(null)) {
-				keyBtn.setSelected(true);
-				tfKey.add(privKeylbl);
-				publKeylbl.setEnabled(false);
-				publKeylbl.setVisible(false);
-				privKeylbl.setVisible(true);
-				privKeylbl.setEnabled(true);
-				tfKey.addKeyListener(new KeyAdapter() {
+					keyBtn.setSelected(true);
+					tfKey.add(pubKeylbl);
+					priKeylbl.setEnabled(false);
+					priKeylbl.setVisible(false);
+					pubKeylbl.setVisible(true);
+					pubKeylbl.setEnabled(true);
+					tfKey.addKeyListener(new KeyAdapter() {
 
-					@Override
-					public void keyTyped(KeyEvent e) {
-						if (e.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
-							privKeylbl.setVisible(false);
-							privKeylbl.setEnabled(false);
-						}
-						if (tfKey.getText().equals("")) {
-							publKeylbl.setEnabled(false);
-							publKeylbl.setVisible(false);
-							privKeylbl.setEnabled(true);
-							privKeylbl.setVisible(true);
-							if (tfKey.getText() != "") {
-								privKeylbl.setEnabled(false);
+						@Override
+						public void keyTyped(KeyEvent e) {
+							if (e.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
+								pubKeylbl.setVisible(false);
+								pubKeylbl.setEnabled(false);
+							}
+							if (tfKey.getText().equals("")) {
+								priKeylbl.setEnabled(false);
+								priKeylbl.setVisible(false);
+								pubKeylbl.setEnabled(true);
+								pubKeylbl.setVisible(true);
+								if (tfKey.getText() != "") {
+									pubKeylbl.setEnabled(false);
+								}
 							}
 						}
-					}
-				});
+					});
 				}
 			}
 		});
@@ -246,11 +245,11 @@ public class AsymmetricPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				algorithmText = jcbAlg.getSelectedItem().toString();
 				switch (algorithmText) {
-				case "RSA":
-					listKeySize = new ArrayList<Integer>();
-					listKeySize.add(512);
-					listKeySize.add(1024);
-					break;
+					case "RSA":
+						listKeySize = new ArrayList<Integer>();
+						listKeySize.add(512);
+						listKeySize.add(1024);
+						break;
 				}
 				keySize = listKeySize.get(0);
 				List<String> listKeySizeStr = listKeySize.stream().map(item -> item.toString())
@@ -415,15 +414,15 @@ public class AsymmetricPanel extends JPanel {
 				int response2 = fileChooser.showOpenDialog(panel);
 				if (response2 == JFileChooser.APPROVE_OPTION) {
 					keyFile = new File(fileChooser.getSelectedFile().getAbsolutePath());
-					publKeylbl.setVisible(false);
+					priKeylbl.setVisible(false);
 					tfKeyFile.setText(keyFile.getPath());
-					privKeylbl.setVisible(false);
-					publKeylbl.setVisible(false);
+					pubKeylbl.setVisible(false);
+					priKeylbl.setVisible(false);
 					keyText = HandleFile.handleReadFile(keyFile);
 					tfKey.setText(keyText);
 				}
 				if (response2 == JFileChooser.CANCEL_OPTION) {
-					publKeylbl.setVisible(false);
+					priKeylbl.setVisible(false);
 					tfInputFile.setText("no such file");
 				}
 			}
@@ -613,3 +612,4 @@ public class AsymmetricPanel extends JPanel {
 		frame.setVisible(true);
 	}
 }
+

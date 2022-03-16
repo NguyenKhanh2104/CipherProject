@@ -161,36 +161,36 @@ public class SymmectricPanel extends JPanel {
 				algorithmText = jcbAlg.getSelectedItem().toString();
 
 				switch (algorithmText) {
-				case "DES":
-					listKeySize = new ArrayList<Integer>();
-					listKeySize.add(56);
+					case "DES":
+						listKeySize = new ArrayList<Integer>();
+						listKeySize.add(56);
 
-					break;
-				case "AES":
-					listKeySize = new ArrayList<Integer>();
-					listKeySize.add(128);
-					listKeySize.add(192);
-					listKeySize.add(256);
-					break;
-				case "DESede":
-					listKeySize = new ArrayList<Integer>();
-					listKeySize.add(112);
-					listKeySize.add(168);
-					break;
-				case "RC2":
-					listKeySize = new ArrayList<Integer>();
-					listKeySize.add(56);
-					listKeySize.add(112);
-					listKeySize.add(128);
-					listKeySize.add(256);
-					break;
-				case "RC4":
-					listKeySize = new ArrayList<Integer>();
-					listKeySize.add(56);
-					listKeySize.add(112);
-					listKeySize.add(128);
-					listKeySize.add(256);
-					break;
+						break;
+					case "AES":
+						listKeySize = new ArrayList<Integer>();
+						listKeySize.add(128);
+						listKeySize.add(192);
+						listKeySize.add(256);
+						break;
+					case "DESede":
+						listKeySize = new ArrayList<Integer>();
+						listKeySize.add(112);
+						listKeySize.add(168);
+						break;
+					case "RC2":
+						listKeySize = new ArrayList<Integer>();
+						listKeySize.add(56);
+						listKeySize.add(112);
+						listKeySize.add(128);
+						listKeySize.add(256);
+						break;
+					case "RC4":
+						listKeySize = new ArrayList<Integer>();
+						listKeySize.add(56);
+						listKeySize.add(112);
+						listKeySize.add(128);
+						listKeySize.add(256);
+						break;
 				}
 				keySizeSelected = listKeySize.get(0);
 				List<String> listKeySizeStr = listKeySize.stream().map(item -> item.toString())
@@ -365,7 +365,7 @@ public class SymmectricPanel extends JPanel {
 		panel.add(panGenKey);
 
 		JPanel panJSC = new JPanel();
-		panJSC.setPreferredSize(new Dimension(346, 50));
+		panJSC.setPreferredSize(new Dimension(340, 50));
 		panJSC.setLayout(new BorderLayout(0, 0));
 		panGenKey.add(panJSC);
 
@@ -379,8 +379,8 @@ public class SymmectricPanel extends JPanel {
 		jcboxAutoKey = new JCheckBox("AutoGen");
 		jcboxAutoKey.setEnabled(false);
 		jcboxAutoKey.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		jcboxAutoKey.setSize(75, 30);
-		jcboxAutoKey.setPreferredSize(new Dimension(75, 40));
+		jcboxAutoKey.setSize(90, 30);
+		jcboxAutoKey.setPreferredSize(new Dimension(80, 50));
 		jcboxAutoKey.setLocation(350, 20);
 		jcboxAutoKey.addActionListener(new ActionListener() {
 
