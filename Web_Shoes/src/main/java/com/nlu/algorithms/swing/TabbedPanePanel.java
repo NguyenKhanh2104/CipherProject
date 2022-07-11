@@ -31,6 +31,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.util.Queue;
 
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -47,7 +48,7 @@ import javax.swing.JTextField;
 
 public class TabbedPanePanel extends JPanel {
 	private JTabbedPane tabs;
-	private JPanel sysPanTab, asysPanTab, hashTab;
+	private JPanel sysPanTab, asysPanTab, hashTab,equalTextTab;
 
 	public TabbedPanePanel() {
 		Gui();
@@ -82,11 +83,11 @@ public class TabbedPanePanel extends JPanel {
 		sysPanTab = new SymmectricPanel();
 		asysPanTab = new AsymmetricPanel();
 		hashTab = new HashPanel();
-
+		equalTextTab = new EqualTextPanel();
 		tabs.addTab("Symmetric", sysPanTab);
 		tabs.addTab("Asymmetric", asysPanTab);
 		tabs.add("HashText", hashTab);
-
+		tabs.addTab("EqualText",equalTextTab);
 		JPanel panelFileText = new JPanel(new BorderLayout()) {
 			private Image myBG = new ImageIcon(getClass().getResource("")).getImage();
 

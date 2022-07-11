@@ -8,21 +8,21 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "Filedownload", value = "/main/Filedownload")
+@WebServlet(name = "filedownload", value = "/main/filedownload")
 public class Filedownload extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try (PrintWriter out = response.getWriter()) {
             String name = request.getParameter("filename");
             String path = getServletContext().getRealPath("/" + "file" + File.separator + name);
             response.setContentType("APPLICATION/OCTET-STREAM");
-            //force to download
+
             String hkey = "Content-Sisposition";
-//            response.setHeader(hkey,"attachment; filename=\""+dwFile.getName()+"\"");
+//
             response.setHeader("Content-Disposition", "attachment; filename=\"" + name + "\"");
             File file;
             FileInputStream ins = new FileInputStream(path);
-            //byte[] buffer = new byte[ins.available()];
+
             int i;
             while ((i = ins.read()) != -1) {
                 out.write(i);
@@ -33,7 +33,7 @@ public class Filedownload extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
 }

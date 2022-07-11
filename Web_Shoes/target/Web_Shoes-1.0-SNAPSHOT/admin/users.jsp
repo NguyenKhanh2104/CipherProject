@@ -19,11 +19,89 @@
         input#find_item {
             width: 187px;
         }
+
         .table td, .table th {
-            padding: 0.6rem;
             vertical-align: top;
-            /* margin-top: -14px; */
             border-top: 1px solid #dee2e6;
+            max-width: 400px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* Fix table head */
+        .tableFixHead {
+            overflow: auto;
+            height: 450px;
+        }
+
+        .tableFixHead th {
+            position: sticky;
+            top: 0;
+        }
+
+        /* Just common table stuff. */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        /*th, td { padding: 2px 4px; }*/
+        th {
+            background: #eee;
+        }
+
+        .open-button {
+            background-color: #555;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            opacity: 0.8;
+            position: fixed;
+            bottom: 23px;
+            right: 28px;
+            width: 280px;
+        }
+
+        /* The popup form - hidden by default */
+        .form-popup {
+            display: none;
+            position: fixed;
+            width: 870px;
+            bottom: 21%;
+            right: 17%;
+            border: 3px solid #c4d4ee;
+            border-radius: 10px;
+            z-index: 9;
+        }
+
+        /* Add styles to the form container */
+        .form-container {
+            max-width: 870px;
+            padding: 10px;
+            background-color: white;
+        }
+
+        /* Set a style for the submit/login button */
+        .form-container .btn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        /* Add a red background color to the cancel button */
+        .form-container .cancel {
+            background-color: red;
+        }
+
+        .input-group-text {
+            width: 110px;
         }
     </style>
 </head>
@@ -93,19 +171,25 @@
                 </div>
                 <!--  -->
 
-                <!--  -->
                 <div class="caption">
                     <div>
                         <h4>Tất Cả Người Dùng</h4>
                     </div>
-                    <div id="seachUser" style="margin : 10px 10px">
-                        <input
-                                placeholder="Nhập thông tin user cần tìm"
-                                class="find_item"
-                                id="find_item"
-                                type="text"
-                        />
-                    </div>
+                    <form action="/admin/SearchUser" method="post">
+                        <div id="seachUser" style="margin : 10px 10px">
+                            <input
+                                    placeholder="Nhập thông tin user cần tìm"
+                                    name="txtUser"
+                                    value="${txtUser}"
+                                    class="find_item"
+                                    id="find_item"
+                                    type="text"
+                            />
+                            <button class="btn1" type="submit">
+                                <span class="fa fa-search" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </form>
                 </div>
                 <!--  -->
                 <div class="table_wrapper">
@@ -129,46 +213,162 @@
                             <button class="btn_apply">Thực Hiện</button>
                         </div>
                     </div>
-                    <table class="table table-hover">
-                        <thead class="check" style="margin: 0px 5px 0px 5px">
-                        <tr>
-                            <th><input type="checkbox" name="" id="sellect_all"/></th>
-                            <th class="thead">UserID</th>
-                            <th class="thead" style="margin-left: 100px">UserKey</th>
-                            <th class="thead">UserName</th>
-                            <th class="thead" style="margin-left: 100px">Password</th>
-                            <th class="thead">Email</th>
-                            <th class="thead">Phone</th>
-                            <th class="thead">Role</th>
-                            <th class="thead">Public Key</th>
-                            <th colspan="3" class="th_action">Option</th>
-                        </tr>
-                        </thead>
-                        <tbody id="table">
-                        <c:forEach items="${listU}" var="o">
+                    <div class="tableFixHead">
+                        <table class="table table-hover" style="">
+                            <thead class="check" style="margin: 0px 5px 0px 5px">
                             <tr>
-                                <td><input type="checkbox" class="cb_item"/></td>
-                                <td>${o.id}</td>
-                                <td>${o.key}</td>
-                                <td>${o.username}</td>
-                                <td>${o.password}</td>
-                                <td>${o.email}</td>
-                                <td>${o.phone}</td>
-                                <td>${o.role}</td>
-                                <td>${o.password}</td>
-                                <td class="button_action-container td_action">
-                                    <button class="btn_action btn_quick-edit">
-                                        <a href="user-setting.jsp">Cài Đặt</a>
-                                    </button>
-                                    <button class="btn_action btn_user-delete">
-                                        <a href="">Xóa</a>
-                                    </button>
-                                </td>
+                                <th><input type="checkbox" name="" id="sellect_all"/></th>
+                                <th class="thead">UserID</th>
+                                <th class="thead">UserKey</th>
+                                <th class="thead">UserName</th>
+                                <th class="thead">Password</th>
+                                <th class="thead">Email</th>
+                                <th class="thead">Phone</th>
+                                <th class="thead">city</th>
+                                <th class="thead">distric</th>
+                                <th class="thead">addressDetails</th>
+                                <th class="thead">Role</th>
+                                <th class="thead">Public Key</th>
+                                <th colspan="3" class="th_action">Option</th>
                             </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
-
+                            </thead>
+                            <tbody id="table">
+                            <c:forEach items="${listU}" var="o">
+                                <tr>
+                                    <td><input type="checkbox" class="cb_item"/></td>
+                                    <td>${o.id}</td>
+                                    <td>${o.key}</td>
+                                    <td>${o.username}</td>
+                                    <td>${o.password}</td>
+                                    <td>${o.email}</td>
+                                    <td>${o.phone}</td>
+                                    <td>${o.city}</td>
+                                    <td>${o.distric}</td>
+                                    <td>${o.adddressDetails}</td>
+                                    <td>${o.role}</td>
+                                    <td>${o.publicKey}</td>
+                                    <td class="button_action-container td_action">
+                                        <div class="btnExcute" style="display: flex">
+                                            <button class="btn_action btn_quick-edit" onclick="openForm()">
+                                                <a href="/admin/users/update?id=${o.id}">Cài đặt</a>
+                                            </button>
+                                            <button class="btn_action btn_user-delete btn-danger"
+                                                    style="margin-left: 5px">
+                                                <a href="">Xóa</a>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                        <div class="form-popup" id="myForm">
+                            <form action="/admin/users/update" method="get" class="form-container">
+                                <h3>Login</h3>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1">UserID</span>
+                                                </div>
+                                                <input type="text" value="${o.id}" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon2">UserKey</span>
+                                                </div>
+                                                <input type="text" value=${o.key} class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                                            </div>
+                                        </div>
+                                        <div class="w-100"></div>
+                                        <div class="col">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon3">UserName</span>
+                                                </div>
+                                                <input type="text" value="" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon4">Password</span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                                            </div>
+                                        </div>
+                                        <div class="w-100"></div>
+                                        <div class="col">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon5">Email</span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon6">Phone</span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                                            </div>
+                                        </div>
+                                        <div class="w-100"></div>
+                                        <div class="col">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon7">City</span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon8">Distric</span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                                            </div>
+                                        </div>
+                                        <div class="w-100"></div>
+                                        <div class="col">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon9">AddressDetails</span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon10">Role</span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                                            </div>
+                                        </div>
+                                        <div class="w-100"></div>
+                                        <div class="col col6">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text label6" id="basic-addon111" style="height: 36px">PublicKey</span>
+                                                </div>
+                                                <input style="height: 135px" readonly type="text" class="form-control inputOrder" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                                            </div>
+                                        </div>
+                                        <div class="col col7" style="display: flex;height: 60px">
+                                            <button type="submit" class="btn" style="border-radius: 30px">Save</button>
+                                            <button type="button" class="btn cancel" onclick="closeForm()" style="border-radius: 30px">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     <div class="action_bar mt-1">
                         <div class="select">
                             <select name="action">
@@ -198,6 +398,15 @@
     <script src="./js/main.js"></script>
 
     <script src="js/dasboard.js"></script>
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    </script>
     <script>
         var ctx = document.getElementById("myChart").getContext("2d");
         var myChart = new Chart(ctx, {
@@ -360,12 +569,6 @@
         });
     </script>
 </div>
-<!-- ============================================================== -->
-<!-- End Wrapper -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
-<!-- All Jquery -->
-<!-- ============================================================== -->
 <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap tether Core JavaScript -->
 <script src="../assets/libs/popper.js/dist/umd/popper.min.js"></script>

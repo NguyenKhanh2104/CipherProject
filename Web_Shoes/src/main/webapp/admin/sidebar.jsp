@@ -64,7 +64,7 @@
                                                 href="javascript:void(0)" aria-expanded="false"> <i
                             class="fas fa-address-book"></i><span class="hide-menu">Quản lí tài khoản</span></a>
                         <ul aria-expanded="false" class="collapse  first-level">
-                            <li class="sidebar-item"><a href="/admin/ViewUserController" class="sidebar-link"><span
+                            <li class="sidebar-item"><a href="/admin/users" class="sidebar-link"><span
                                     class="hide-menu">Tổng quan </span></a></li>
                             <li class="sidebar-item"><a href="/store/signUp.jsp" class="sidebar-link"><span
                                     class="hide-menu"> Thêm tài khoản  </span></a></li>

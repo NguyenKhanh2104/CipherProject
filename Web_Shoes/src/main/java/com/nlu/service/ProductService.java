@@ -146,6 +146,8 @@ List<ProductDetails> details = productDetailsService.findByProductId(productId);
         }
     }
 
+
+
     public List<Product> findProductsByCategoryName(String categoryName) {
         List<Product> products = new ArrayList<>();
         String query = "SELECT products.* FROM products JOIN category ON products.category_id = category.category_id WHERE category.name = ?";
@@ -210,10 +212,38 @@ List<ProductDetails> details = productDetailsService.findByProductId(productId);
         return products;
     }
 
-
     @Override
     public List<Product> findByName() {
         return null;
+    }
+
+    public List<Product> searchByName(String nameProduct) {
+        List<Product> products = new ArrayList<>();
+        Product product = new Product();
+        String query = "SELECT * FROM products WHERE name LIKE ?" ;
+        try {
+            Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, "%"+nameProduct+"%");
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+               products.add( new Product(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getInt(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getInt(6),
+                        rs.getInt(7),
+                        rs.getInt(8),
+                        null
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
+
     }
 
     @Override
@@ -351,9 +381,6 @@ List<ProductDetails> details = productDetailsService.findByProductId(productId);
 
     public static void main(String[] args) throws SQLException {
         ProductService productService = new ProductService();
-        List<Product> lists  = productService.findAll();
-        for (Product o : lists){
-            System.out.println(o);
-        }
+        System.out.println(productService.searchByName("r"));
     }
 }

@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/fmt" prefix = "fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 
 <head>
@@ -37,9 +37,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <style>
-    body{
+    body {
         background-color: #f5f6fa;
     }
+
     .main-container {
         width: 100%;
         min-height: 100vh;
@@ -48,18 +49,22 @@
     .side-bar {
         background-color: #dcdde1;
     }
-    .search-bar{
+
+    .search-bar {
         padding: 1rem 0;
     }
-    .product-shoe-info{
+
+    .product-shoe-info {
         background-color: white;
         margin-bottom: 20px;
         position: relative;
     }
-    .product-shoe-info:hover{
-        box-shadow: 4px 6px 3px 0px rgba(127,143,166,0.75);
+
+    .product-shoe-info:hover {
+        box-shadow: 4px 6px 3px 0px rgba(127, 143, 166, 0.75);
     }
-    .discount-tag{
+
+    .discount-tag {
         position: absolute;
         top: 0;
         right: 0;
@@ -68,13 +73,15 @@
         /*transition: .2s ease-in-out;*/
     }
 
-    .discount-tag span{
+    .discount-tag span {
         font-size: 18px;
-        color : red;
+        color: red;
     }
-    .fa-tags{
-       color : red;
+
+    .fa-tags {
+        color: red;
     }
+
     @keyframes big-big {
         from {
             transform: scale(1);
@@ -111,10 +118,10 @@
             <div class="side-bar col-lg-4">
                 <div class="search-bar w3layouts-newsletter">
                     <h3 class="sear-head">TÌM KIẾM</h3>
-                    <form action="#" method="post" class="d-flex">
-                        <input type="search" placeholder="TÊN SẢN PHẨM" name="search" class="form-control"
-                               required=""/>
-                        <button class="btn1">
+                    <form action="searchProduct" method="post" class="d-flex">
+                        <input type="search" placeholder="TÊN SẢN PHẨM" name="txt" class="form-control"
+                               value="${txtS}"/>
+                        <button class="btn1" type="submit">
                             <span class="fa fa-search" aria-hidden="true"></span>
                         </button>
                     </form>
@@ -130,7 +137,7 @@
                         <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                              data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                <c:forEach  items="${tags}" var="tag">
+                                <c:forEach items="${tags}" var="tag">
                                     <c:if test="${tag.status == 1}">
                                         <input type="checkbox" id="${tag.name} name=${tag.name} value=${tag.id}">
                                         <label for="${tag.name}">${tag.name}</label>
@@ -199,7 +206,8 @@
                                         <div class="grid-price">
                                             <c:if test="${item.discount > 0}">
                                                 <span style="color: #44bd32" class="money">
-                                                    <fmt:formatNumber maxFractionDigits="0" type="number"   value="${ (item.price - (item.price * item.discount /100))}"/> vnd
+                                                    <fmt:formatNumber maxFractionDigits="0" type="number"
+                                                                      value="${ (item.price - (item.price * item.discount /100))}"/> vnd
                                                 </span>
 
                                             </c:if>
@@ -219,93 +227,51 @@
                             </div>
                         </div>
                     </c:forEach>
-
+                </div>
+                    <br>
+                    <br>
+                <div class="container" style="background-color: red;position: relative">
+                    <div style="margin: auto;text-align: center">
+                        <nav style="text-align: center;margin: auto">
+                            <ul class="pagination" style="text-align: center;position: absolute;left: 50%">
+                                <%--prev--%>
+                                <c:if test="${pagesCount >  1}">
+                                    <li>
+                                        <a style="padding: 10px 15px; background: #2d2f35; border: 1px solid whitesmoke"
+                                                <c:if test="${currentPage >1}">
+                                                    href="/products?category=${currentCategory}&pages=${currentPage -1}"
+                                                </c:if> aria-label="Previous">
+                                            <span aria-hidden="true">«</span>
+                                        </a>
+                                    </li>
+                                </c:if>
+                                <%--prev--%>
+                                <c:forEach var="i" begin="1" end="${pagesCount}">
+                                    <li>
+                                        <a style="padding: 10px 15px; background: #2d2f35;border: 1px solid whitesmoke"
+                                           href="/products?category=${currentCategory}&pages=${i}">${i}</a>
+                                    </li>
+                                </c:forEach>
+                                <%--next--%>
+                                <c:if test="${pagesCount > 1}">
+                                    <li>
+                                        <a style="padding: 10px 15px; background: #2d2f35; border: 1px solid whitesmoke"
+                                                <c:if test="${currentPage < pagesCount}">
+                                                    href="/products?category=${currentCategory}&pages=${currentPage +1}"
+                                                </c:if> aria-label="Next">
+                                            <span aria-hidden="true">»</span>
+                                        </a>
+                                    </li>
+                                </c:if>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
 
-    <div class="container" style="background-color: red;position: relative">
-        <div style="margin: auto;text-align: center">
-            <nav style="text-align: center;margin: auto">
-                <ul class="pagination" style="text-align: center;position: absolute;left: 50%">
-                    <%--prev--%>
-                    <c:if test="${pagesCount >  1}">
-                        <li>
-                            <a style="padding: 10px 15px; background: #2d2f35; border: 1px solid whitesmoke"
-                                    <c:if test="${currentPage >1}">
-                                        href="/products?category=${currentCategory}&pages=${currentPage +1}"
-                                    </c:if> aria-label="Previous">
-                                <span aria-hidden="true">«</span>
-                            </a>
-                        </li>
-                    </c:if>
-                    <%--prev--%>
-                    <c:forEach var="i" begin="1" end="${pagesCount}">
-                        <li>
-                            <a style="padding: 10px 15px; background: #2d2f35;border: 1px solid whitesmoke"
-                               href="/products?category=${currentCategory}&pages=${i}">${i}</a>
-                        </li>
-                    </c:forEach>
-                    <%--next--%>
-                    <c:if test="${pagesCount > 1}">
-                        <li>
-                            <a style="padding: 10px 15px; background: #2d2f35; border: 1px solid whitesmoke"
-                                    <c:if test="${currentPage < pagesCount}">
-                                        href="/products?category=${currentCategory}&pages=${currentPage +1}"
-                                    </c:if> aria-label="Next">
-                                <span aria-hidden="true">»</span>
-                            </a>
-                        </li>
-                    </c:if>
-                </ul>
-            </nav>
-        </div>
-    </div>
-
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-end">
-            <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">Previous</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-            </li>
-        </ul>
-    </nav>
 </section>
 
 

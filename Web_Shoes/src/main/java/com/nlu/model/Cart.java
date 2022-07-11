@@ -4,8 +4,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -67,6 +69,9 @@ public class Cart {
             item.setQuality(quality);
         }
         cart.put(item.getProductDetailsId(), item);
+
+
+
     }
 
     public void remove(int id) {

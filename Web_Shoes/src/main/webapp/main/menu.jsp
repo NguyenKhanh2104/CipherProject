@@ -35,14 +35,18 @@
                 User auth = (User) session.getAttribute("auth");
                 request.setAttribute("auth", auth);
             %>
-
+            <c:if test="${auth != null}">
+                <span class="authName " style="color: #d9d9d9;margin-left: 321px">Hi! ${auth.username}</span>
+            </c:if>
+            <c:if test="${auth != null}">
+                <span class="logout " style="margin-left: 15px"> <a class="btn btn-light action-button" role="button"  href="/logout">Đăng Xuất</a></span>
+            </c:if>
             <c:if test="${auth == null}">
                 <span class="navbar-text "> <a class="login" href="/main/login.jsp">Đăng Nhập</a></span>
             </c:if>
-            <c:if test="${auth != null}">
-                <span class="navbar-text "> <a class="login" href="/logout">Đăng Xuất</a></span>
+            <c:if test="${auth == null}">
+                <a class="btn btn-light action-button" role="button" href="/main/register.jsp">Đăng Kí</a>
             </c:if>
-            <a class="btn btn-light action-button" role="button" href="/main/register.jsp">Đăng Kí</a>
         </div>
 
     </div>

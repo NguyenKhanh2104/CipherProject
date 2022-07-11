@@ -20,9 +20,7 @@ public class UserService {
             Connection connection = getConnection();
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
-            int userid;
             while (rs.next()) {
-                userid = rs.getInt(1);
                 User u = new User(
                         rs.getInt(1),
                         rs.getString(2),
@@ -46,13 +44,40 @@ public class UserService {
         }
 
     }
+    public List<User> searchByUserName(String userName) {
+        List<User> users = new ArrayList<>();
+        String query = "SELECT * FROM user WHERE username LIKE ?" ;
+        try {
+            Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, "%"+userName+"%");
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                users.add( new User(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getString(11)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+
+    }
 
     public User getUser(String username, String password) {
         Connection conn = getConnection();
         String query = "SELECT * FROM user WHERE username= ? AND password=?";
         User user = new User();
         String result = user.toMd5(password);
-        System.out.println(result);
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, username);
@@ -75,7 +100,69 @@ public class UserService {
         }
         return null;
     }
+    public User getUserById(int userId) {
+        Connection conn = getConnection();
+        String query = "SELECT * FROM user WHERE user_id= ?";
+        User user = new User();
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, userId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                user = new User(rs.getInt(1), rs.getString(2), rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getString(11));
+            }
+            return user;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+        public boolean updateUser(User user) throws SQLException {
+            boolean rowUpdate = true;
+            Connection conn = getConnection();
+            String query = "UPDATE `products` SET `user_key`=?,`username`=?,`password`=?,`email`=?,`phone`=?,`city`=?,`district`=?,`address_details`=?,`Role`=?,`PublicKey`=? WHERE `user_id`=?";
+            try {
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setString(1, user.getKey());
+                ps.setString(2, user.getUsername());
+                ps.setString(3, user.getPassword());
+                ps.setString(4, user.getEmail());
+                ps.setString(5, user.getPhone());
+                ps.setString(6, user.getCity());
+                ps.setString(7, user.getDistric());
+                ps.setString(8, user.getAdddressDetails());
+                ps.setString(9, user.getRole());
+                ps.setString(10, user.getPublicKey());
+                ps.setInt(11, user.getId());
+                rowUpdate = ps.executeUpdate() > 0;
+                
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return rowUpdate;
+        }
+    public boolean deleteUser(int id) throws SQLException {
+        boolean rowUpdate = true;
+        Connection conn = getConnection();
+        String query = "DELETE FROM user WHERE `user_id`=?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1,id);
+            rowUpdate = ps.executeUpdate() > 0;
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rowUpdate;
+    }
     public void save(User user, String role,String publicKey) {
         Connection conn = getConnection();
         String query = "INSERT INTO `user`( `user_key`, `username`, `password`, `email`, `phone`, `city`, `district`, `address_details`, `role`,`publicKey`) VALUES (?,?,?,?,?,?,?,?,?,?)";
@@ -190,16 +277,8 @@ public class UserService {
         return false;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         UserService userService = new UserService();
-//       System.out.println(userService.getUserIDByName("khanh"));
-//       System.out.println(userService.getUser("npk","npk"));
-        List<User> li = userService.findAll();
-        for (User u: li
-             ) {
-            System.out.println(u);
-        }
-
-//        userService.save(new User(3,"key","khanh","password","1813000@gmail.com","0869104353","dn","dn","addresss",""),"customer");
+        System.out.println(userService.updateUser(userService.getUserById(36)));
     }
 }

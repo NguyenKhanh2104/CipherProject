@@ -73,7 +73,7 @@ public class RegisterController extends HttpServlet {
         userService.save(user, "customer", pub);
         req.setAttribute("register-success", "success");
 
-        req.setAttribute("messPri", "private key : " + "\n" + pri);
+        req.setAttribute("messPri", pri);
 
         req.getRequestDispatcher("/main/register.jsp").forward(req, resp);
     }

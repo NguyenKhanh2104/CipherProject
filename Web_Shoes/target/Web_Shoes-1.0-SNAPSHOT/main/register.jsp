@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Đăng Kí</title>
     <style>
         * {
@@ -121,15 +122,18 @@
             request.getAttribute("mess") == null ? "" : request.getAttribute("mess")
             %>
         </span>
-                <a href="/main/login.jsp">Dăng Nhập</a>
+
             </h1>
-            <div class="priKey" style="word-wrap: break-word;max-width: 536px;border: 1.5px solid #10adfb">
-                <h3>
+            <h2 class="text-danger"  style="word-wrap:break-word;text-align: center">Vui lòng lưu lại nội dung bên dưới để xác nhận khi mua hàng </h2>
+            <div class="border border-success" style="word-wrap: break-word;max-width: 536px">
+
+                <h4>
                     <%=
                     request.getAttribute("messPri") == null ? "" : request.getAttribute("messPri")
                     %>
-                </h3>
+                </h4>
             </div>
+            <a  style="color: rgb(78, 110, 255);font-size: 30px" href="/main/login.jsp">Đăng Nhập</a>
         </c:if>
         <c:if test="${success.length() == null}">
             <input

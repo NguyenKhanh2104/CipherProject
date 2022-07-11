@@ -99,12 +99,11 @@
     </div>
     <!-- End: Header -->
 </div>
-
 <%--products--%>
 <section class="ab-info-main py-md-5 py-4">
     <div class="container">
         <div class="linkInstall">
-            <span class="content"> Tải link ứng dụng mã hoá chữ ký tại đây :  <a href="Filedownload?filename=check2.exe">Download</a></span>
+            <span class="content"> Tải link ứng dụng mã hoá chữ ký tại đây :  <a href="filedownload?filename=appSign.exe">Download</a></span>
         </div>
     </div>
 

@@ -1,6 +1,6 @@
+<%@ page import="com.nlu.model.User" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/fmt" prefix = "fmt" %>
 
 <html>
 <head>
@@ -159,8 +159,8 @@
 
                     </div>
 
-<%--                    class="details"--%>
-                    <form  action="/cart/add" method="post">
+                    <%--                    class="details"--%>
+                    <form action="/cart/add" method="post">
                         <h4 class="product_name">${product.name}</h4>
                         <h2 class="size_title">Size :</h2>
                         <div class="product_size-container"
@@ -173,14 +173,7 @@
                                 </div>
                             </c:forEach>
                         </div>
-                        <div
-                                class="product_amount"
-                                style="display: flex; justify-content: space-between">
-                            <div><strong style="font-weight: 500">Số Lượng</strong></div>
-                            <div>
-                                <input name="quality" type="number" class="quality">
-                            </div>
-                        </div>
+
                         <div class="total">
                             <div class="total_title" style="margin: 1rem 0">
                                 <strong>Giá :</strong>
@@ -196,13 +189,23 @@
                         </div>
                         <!-- <hr /> -->
 
+
                         <div class="button-product">
 
-
-
-                            <button type="submit" class="buttons buttons-cart btn-add">
-                                Thêm vào giỏ
-                            </button>
+                            <%
+                                User auth = (User) session.getAttribute("auth");
+                                request.setAttribute("auth", auth);
+                            %>
+                            <c:if test="${auth == null}">
+                                <button onclick="addCart()" class="buttons buttons-cart btn-add">
+                                    <a href="/main/login.jsp"> Thêm vào giỏ</a>
+                                </button>
+                            </c:if>
+                            <c:if test="${auth != null}">
+                                <button type="submit" class="buttons buttons-cart btn-add">
+                                    Thêm vào giỏ
+                                </button>
+                            </c:if>
                             <a href="cart.jsp">
                                 <button class="buttons buttons-carts" type="button">
                                     <a href="/main/cart.jsp">Xem Giỏ Hàng</a>
@@ -319,6 +322,11 @@
     document.querySelector(".btn-add").addEventListener("click", () => {
         alert("Sản phẩm đã được thêm vào giỏ hàng");
     });
+</script>
+<script>
+    function addCart() {
+        alert("Vui lòng đăng nhập \nđể thêm sản phẩm vào giỏ hàng");
+    }
 </script>
 </body>
 </html>
