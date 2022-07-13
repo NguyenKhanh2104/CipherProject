@@ -26,6 +26,8 @@ public class SignService {
             ps.setString(1, signText);
             ps.setString(2, or.getOrderId());
             ps.executeUpdate();
+            System.out.println(or);
+            System.out.println("cau query ok");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -94,7 +96,7 @@ public class SignService {
 
     public static void main(String[] args) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         SignService si  =new SignService();
-        System.out.println(si.findLastOrder());
-        si.updateSign("yeuem");
+//        System.out.println(si.findLastOrder());
+        si.updateSign("kkk");
     }
 }

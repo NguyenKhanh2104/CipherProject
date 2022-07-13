@@ -280,8 +280,8 @@
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong">
                 Hướng dẫn
             </button>
-            <button type="submit" onclick="myFunction()" class="btn btn-success" style="height: fit-content">
-                <a href="/">Gửi</a>
+            <button type="submit" onclick="myFunction()" class="btn btn-success" style="height: fit-content;margin-left: 537px">
+                Gửi
             </button>
             <div class="center">
                 <input type="checkbox" id="click">

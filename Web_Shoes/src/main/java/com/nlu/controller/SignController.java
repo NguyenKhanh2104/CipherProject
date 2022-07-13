@@ -18,7 +18,8 @@ public class SignController extends HttpServlet {
 
         String text = request.getParameter("signText");
         si.updateSign(text);
-//        request.getRequestDispatcher("/").forward(request, response);
+        System.out.println("controller da cho sign vao");
+        response.sendRedirect("/");
     }
 
 }
