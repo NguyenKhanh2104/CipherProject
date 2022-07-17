@@ -1,5 +1,6 @@
 package com.nlu.service;
 
+import com.nlu.model.Order;
 import com.nlu.model.Product;
 import com.nlu.model.ProductDetails;
 import com.nlu.model.User;
@@ -279,6 +280,11 @@ public class UserService {
 
     public static void main(String[] args) throws SQLException {
         UserService userService = new UserService();
-        System.out.println(userService.updateUser(userService.getUserById(36)));
+        List<User> us = userService.findAll();
+
+        for (User o: us
+        ) {
+            System.out.println(o);
+        }
     }
 }

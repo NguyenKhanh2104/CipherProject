@@ -125,13 +125,16 @@
 
             </h1>
             <h2 class="text-danger"  style="word-wrap:break-word;text-align: center">Vui lòng lưu lại nội dung bên dưới để xác nhận khi mua hàng </h2>
-            <div class="border border-success" style="word-wrap: break-word;max-width: 536px">
+            <div class="border border-success" style="word-wrap: break-word;max-width: 536px;height: fit-content">
 
-                <h4>
+                <textarea id="privateKey">
                     <%=
                     request.getAttribute("messPri") == null ? "" : request.getAttribute("messPri")
                     %>
-                </h4>
+                </textarea>
+<%--                <button type="button" id="btnKey" style="float: right" onclick="copy"--%>
+<%--                        class="right">Copy--%>
+<%--                </button>--%>
             </div>
             <a  style="color: rgb(78, 110, 255);font-size: 30px" href="/main/login.jsp">Đăng Nhập</a>
         </c:if>
@@ -205,5 +208,17 @@
 
     </div>
 </form>
+<script type="text/javascript">
+    var button = document.getElementById("btnKey"),
+        input = document.getElementById("privateKey");
+
+
+    button.addEventListener("click", function(event) {
+        event.preventDefault();
+        input.select();
+        document.execCommand("copy");
+    });
+
+</script>
 </body>
 </html>

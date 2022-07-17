@@ -28,6 +28,11 @@ public class ViewUserController extends HttpServlet {
             case "/delete":
                 break;
             case "/update":
+                try {
+                    updateUser(request,response);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
                 break;
             default:
                 listUser(request, response);
@@ -37,8 +42,15 @@ public class ViewUserController extends HttpServlet {
 
     private void listUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<User> u = us.findAll();
-        HttpSession session2 = req.getSession();
-        session2.setAttribute("listU", u);
+//        String idTf = req.getParameter("idTf");
+//        User detailUser = us.getUserById(Integer.parseInt(idTf));
+//        HttpSession session2 = req.getSession();
+//        session2.setAttribute("listU", u);
+        req.setAttribute("listU",u);
+    //       if(detailUser!=null){
+    //           req.setAttribute("listU",detailUser);
+    //           System.out.println(detailUser);
+    //       }
         req.getRequestDispatcher("/admin/users.jsp").forward(req, resp);
     }
 

@@ -66,13 +66,13 @@
 
                 </a>
 
-                <button type="button" class="btn btn-danger"
-                        style="width: 124px;position: absolute;margin-left: 1077px;margin-top: -51px">
-                    <c:if test="${sessionScope.acc!=null}">
+<%--                <button type="button" class="btn btn-danger"--%>
+<%--                        style="width: 124px;position: absolute;margin-left: 80%;margin-top: -51px">--%>
+<%--                    <c:if test="${sessionScope.acc!=null}">--%>
 
-                        HI! ${sessionScope.acc.userName}
-                    </c:if>
-                </button>
+<%--                        HI! ${sessionScope.acc.userName}--%>
+<%--                    </c:if>--%>
+<%--                </button>--%>
                 <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)"
                    data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                    aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>

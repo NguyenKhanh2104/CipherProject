@@ -263,9 +263,11 @@
         <div class="form-group row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Dữ liệu ký : </label>
             <div class="col-sm-10">
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                <input   type="text" readonly class="form-control-plaintext" id="staticEmail"
                        value="<%= request.getAttribute("key")%>">
-                <%--            <%= request.getAttribute("idOrder")%>--%>
+                <button type="button" id="btnkey" style="float: right" onclick="copy"
+                        class="right">Copy
+                </button>
             </div>
         </div>
         <div class="form-group row">
@@ -350,8 +352,24 @@
 
 
 <jsp:include page="/main/footer.jsp"/>
+<script type="text/javascript">
+    var button = document.getElementById("staticEmail"),
+        input = document.getElementById("btnKey");
+
+
+    button.addEventListener("click", function(event) {
+        event.preventDefault();
+        input.select();
+        document.execCommand("copy");
+    });
+
+</script>
 <script>
     function myFunction() {
+       var inputtf =  document.getElementById("inputPassword").value;
+        if(inputtf.isEmpty()){
+            alert("Vui lòng nhập chữ ký để xác nhận hoá đơn");
+        }
         alert("Quá trình xác nhận mua hàng hoàn tất \nxin chân thành cảm ơn bạn đã đồng hành cùng shop");
     }
 </script>

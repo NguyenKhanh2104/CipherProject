@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -69,6 +69,9 @@
             display: none;
             position: fixed;
             width: 870px;
+            height: fit-content;
+            top : 10%;
+            background-color: #df6a4d;
             bottom: 21%;
             right: 17%;
             border: 3px solid #c4d4ee;
@@ -214,8 +217,11 @@
                         </div>
                     </div>
                     <div class="tableFixHead">
+
                         <table class="table table-hover" style="">
+
                             <thead class="check" style="margin: 0px 5px 0px 5px">
+
                             <tr>
                                 <th><input type="checkbox" name="" id="sellect_all"/></th>
                                 <th class="thead">UserID</th>
@@ -232,11 +238,12 @@
                                 <th colspan="3" class="th_action">Option</th>
                             </tr>
                             </thead>
+                            <c:forEach items="${listU}" var="o" >
                             <tbody id="table">
-                            <c:forEach items="${listU}" var="o">
+
                                 <tr>
                                     <td><input type="checkbox" class="cb_item"/></td>
-                                    <td>${o.id}</td>
+                                    <td >${o.id}</td>
                                     <td>${o.key}</td>
                                     <td>${o.username}</td>
                                     <td>${o.password}</td>
@@ -249,8 +256,10 @@
                                     <td>${o.publicKey}</td>
                                     <td class="button_action-container td_action">
                                         <div class="btnExcute" style="display: flex">
-                                            <button class="btn_action btn_quick-edit" onclick="openForm()">
-                                                <a href="/admin/users/update?id=${o.id}">Cài đặt</a>
+<%--                                            <button class="btn_action btn_quick-edit" onclick="openForm(${o.id},${o.key},${o.username},${o.password},${o.email},${o.phone},${o.city},${o.distric},${o.adddressDetails},${o.role},${o.publicKey})">--%>
+                                            <button class="btn_action btn_quick-edit" >
+<%--                                                <a href="/admin/users/?id=${o.id}">Cài đặt</a>--%>
+                                                <a href="/admin/users/detail?id=${o.id}">Chi tiết</a>
                                             </button>
                                             <button class="btn_action btn_user-delete btn-danger"
                                                     style="margin-left: 5px">
@@ -259,115 +268,12 @@
                                         </div>
                                     </td>
                                 </tr>
-                            </c:forEach>
+
+
                             </tbody>
+                            </c:forEach>
                         </table>
-                        <div class="form-popup" id="myForm">
-                            <form action="/admin/users/update" method="get" class="form-container">
-                                <h3>Login</h3>
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="basic-addon1">UserID</span>
-                                                </div>
-                                                <input type="text" value="${o.id}" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="basic-addon2">UserKey</span>
-                                                </div>
-                                                <input type="text" value=${o.key} class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
-                                            </div>
-                                        </div>
-                                        <div class="w-100"></div>
-                                        <div class="col">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="basic-addon3">UserName</span>
-                                                </div>
-                                                <input type="text" value="" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="basic-addon4">Password</span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
-                                            </div>
-                                        </div>
-                                        <div class="w-100"></div>
-                                        <div class="col">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="basic-addon5">Email</span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="basic-addon6">Phone</span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
-                                            </div>
-                                        </div>
-                                        <div class="w-100"></div>
-                                        <div class="col">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="basic-addon7">City</span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="basic-addon8">Distric</span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
-                                            </div>
-                                        </div>
-                                        <div class="w-100"></div>
-                                        <div class="col">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="basic-addon9">AddressDetails</span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="basic-addon10">Role</span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
-                                            </div>
-                                        </div>
-                                        <div class="w-100"></div>
-                                        <div class="col col6">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text label6" id="basic-addon111" style="height: 36px">PublicKey</span>
-                                                </div>
-                                                <input style="height: 135px" readonly type="text" class="form-control inputOrder" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
-                                            </div>
-                                        </div>
-                                        <div class="col col7" style="display: flex;height: 60px">
-                                            <button type="submit" class="btn" style="border-radius: 30px">Save</button>
-                                            <button type="button" class="btn cancel" onclick="closeForm()" style="border-radius: 30px">Close</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+
                     </div>
                     <div class="action_bar mt-1">
                         <div class="select">
@@ -399,7 +305,11 @@
 
     <script src="js/dasboard.js"></script>
     <script>
-        function openForm() {
+        // function openForm(id,key,name,password,email,phone,ciy,distric,addressDetail,role,publicKey) {
+        //     alert(id  + '\n' + key + '\n' +name+ '\n' +password+ '\n' +email+ '\n' +phone+ '\n' +ciy+ '\n' +distric+ '\n' +addressDetail+ '\n' +role+ '\n' +publicKey);
+        function openForm(key) {
+
+            alert(key + ' abc');
             document.getElementById("myForm").style.display = "block";
         }
 
@@ -407,94 +317,7 @@
             document.getElementById("myForm").style.display = "none";
         }
     </script>
-    <script>
-        var ctx = document.getElementById("myChart").getContext("2d");
-        var myChart = new Chart(ctx, {
-            type: "bar",
-            data: {
-                labels: [
-                    "Tháng 1",
-                    "Tháng 2",
-                    "Tháng 3",
-                    "Tháng 4",
-                    "Tháng 5",
-                    "Tháng 6",
-                ],
-                datasets: [
-                    {
-                        label: "Ẩn",
-                        data: [12, 19, 3, 5, 2, 3],
-                        backgroundColor: [
-                            "rgba(255, 99, 132, 0.2)",
-                            "rgba(54, 162, 235, 0.2)",
-                            "rgba(255, 206, 86, 0.2)",
-                            "rgba(75, 192, 192, 0.2)",
-                            "rgba(153, 102, 255, 0.2)",
-                            "rgba(255, 159, 64, 0.2)",
-                        ],
-                        borderColor: [
-                            "rgba(255, 99, 132, 1)",
-                            "rgba(54, 162, 235, 1)",
-                            "rgba(255, 206, 86, 1)",
-                            "rgba(75, 192, 192, 1)",
-                            "rgba(153, 102, 255, 1)",
-                            "rgba(255, 159, 64, 1)",
-                        ],
-                        borderWidth: 1,
-                    },
-                ],
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: "Biểu đồ thể hiện doanh thu trong 6 tháng",
-                    position: "bottom",
-                },
-                scales: {
-                    yAxes: [
-                        {
-                            ticks: {
-                                beginAtZero: true,
-                            },
-                        },
-                    ],
-                },
-            },
-        });
 
-        new Chart(document.getElementById("pie-chart"), {
-            type: "pie",
-            data: {
-                labels: [
-                    "Jordan 1 Low",
-                    "Chuck 70s",
-                    "AirForce 1",
-                    "Jordan1 Mid Chicago",
-                    "Adidas Human v3",
-                ],
-                datasets: [
-                    {
-                        label: "",
-                        backgroundColor: [
-                            "#3e95cd",
-                            "#8e5ea2",
-                            "#3cba9f",
-                            "#e8c3b9",
-                            "#c45850",
-                        ],
-                        data: [2478, 5267, 734, 784, 433],
-                    },
-                ],
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: "Các Sản Phẩm Bán Chạy trong tháng",
-                    position: "bottom",
-                },
-            },
-        });
-    </script>
     <script>
         const showSettingView = document.querySelector(".show_setting");
         let isShow = false;

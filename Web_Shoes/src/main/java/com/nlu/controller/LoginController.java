@@ -33,7 +33,7 @@ public class LoginController extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("auth", user);
             if (user.getRole().equals("admin")) {
-                req.getRequestDispatcher("/admin/manager.jsp").forward(req, resp);
+                resp.sendRedirect("/admin/manager.jsp");
             }
             if (user.getRole().equals("customer")) {
                 resp.sendRedirect("/");

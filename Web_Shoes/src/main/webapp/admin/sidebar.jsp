@@ -72,10 +72,17 @@
 
                         </ul>
                     </li>
-                    <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                                href="../admin-page/quanlihoadon.html" aria-expanded="false"><i
-                            class="mdi mdi-move-resize-variant"></i><span class="hide-menu">Quản lý hóa đơn</span></a>
+                    <li class="sidebar-item"><a class="sidebar-link has-arrow waves-effect waves-dark"
+                                                href="javascript:void(0)" aria-expanded="false"> <i
+                            class="fas fa-address-book"></i><span class="hide-menu">Quản lí hoá đơn </span></a>
+                        <ul aria-expanded="false" class="collapse  first-level">
+                            <li class="sidebar-item"><a href="/admin/orders" class="sidebar-link"><span
+                                    class="hide-menu">Tổng quan </span></a></li>
+                            <li class="sidebar-item"><a href="/store/signUp.jsp" class="sidebar-link"><span
+                                    class="hide-menu"> Chỉnh sửa  </span></a></li>
 
+
+                        </ul>
                     </li>
                     <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
                                                 href="login.html" aria-expanded="false"><i

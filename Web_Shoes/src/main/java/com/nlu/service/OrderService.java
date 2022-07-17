@@ -1,48 +1,75 @@
 package com.nlu.service;
 
-import com.nlu.algorithms.algorithms.Hash;
-import com.nlu.model.Cart;
 import com.nlu.model.Order;
-import com.nlu.repository.Repository;
 
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import static com.nlu.db.Datasource.getConnection;
 import static com.nlu.db.Datasource.returnConnection;
 
-public class OrderService implements Repository<OrderService> {
+public class OrderService {
 
-    @Override
-    public Collection<OrderService> findAll() throws SQLException {
+    public List<Order> findAll() {
+        List<Order> order = new ArrayList<>();
+        String query = "SELECT * FROM `order` ORDER BY order_id DESC ";
+        try {
+            Connection connection = getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                Order o = new Order(
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getTimestamp(3),
+                        rs.getInt(4),
+                        rs.getString(5),
+                        rs.getInt(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getString(11));
+                order.add(o);
+            }
+
+            returnConnection(connection);
+            System.out.println("ok");
+            return order;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return order;
+        }
+
+    }
+    public Order getOrderById(String orderId) {
+        Connection conn = getConnection();
+        String query = "SELECT * FROM `order` WHERE order_id= ?";
+        Order o = new Order();
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, orderId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                o = new Order(rs.getString(1), rs.getString(2), rs.getTimestamp(3),
+                        rs.getInt(4),
+                        rs.getString(5),
+                        rs.getInt(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getString(11));
+            }
+            return o;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return null;
     }
 
-    @Override
-    public OrderService findById(Integer id) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public List<OrderService> findByName() {
-        return null;
-    }
-
-    @Override
-    public void deleteById(int id){
-    }
-
-    @Override
-    public void add(OrderService orderService) {
-
-    }
-
-
-    public void save(Order order){
+    public void save(Order order) {
         Connection conn = getConnection();
         String query = "INSERT INTO `order` VALUES (?,?,?,?,?,?,?,?,?,?,?)";
         try {
@@ -52,12 +79,12 @@ public class OrderService implements Repository<OrderService> {
             ps.setTimestamp(3, order.getDate());
             ps.setInt(4, order.getStatus());
             ps.setString(5, order.getNote());
-            ps.setInt(6,order.getUser_id());
-            ps.setString(7,order.getEmail());
-            ps.setString(8,order.getCity());
-            ps.setString(9,order.getPhone());
-            ps.setString(10,order.getSign());
-            ps.setString(11,order.getDataSign());
+            ps.setInt(6, order.getUser_id());
+            ps.setString(7, order.getEmail());
+            ps.setString(8, order.getCity());
+            ps.setString(9, order.getPhone());
+            ps.setString(10, order.getSign());
+            ps.setString(11, order.getDataSign());
             ps.executeUpdate();
             conn.close();
         } catch (SQLException e) {
@@ -68,7 +95,7 @@ public class OrderService implements Repository<OrderService> {
 
     public static void main(String[] args) {
         OrderService os = new OrderService();
-//        System.out.println(os.findAllOrder() + "\n");
+        System.out.println(os.getOrderById("HD1657809575373"));
     }
 
 }
