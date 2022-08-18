@@ -414,7 +414,7 @@
                 style="padding: 10px 20px; padding-bottom: 23px; padding-top: 18px"
         >
             <p style="margin-bottom: 0px">
-                Chưa có tài khoản?<a id="register-link" href="#">Đăng Kí!</a>
+                Chưa có tài khoản?<a id="register-link" href="register">Đăng Kí!</a>
             </p>
         </div>
     </form>

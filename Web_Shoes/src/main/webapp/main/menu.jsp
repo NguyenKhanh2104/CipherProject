@@ -24,9 +24,11 @@
                         </c:forEach>
                     </div>
                 </li>
-                <form class="form-inline mr-auto" target="_self">
-                    <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input
-                            class="form-control search-field" type="search" id="search-field" name="search">
+                <form class="form-inline mr-auto" target="_self" action="searchProduct" method="post">
+                    <div class="form-group"><label for="search-field">
+                        <i class="fa fa-search"></i>
+                    </label><input
+                            class="form-control search-field" type="search" id="search-field" name="txt">
                     </div>
                 </form>
 
