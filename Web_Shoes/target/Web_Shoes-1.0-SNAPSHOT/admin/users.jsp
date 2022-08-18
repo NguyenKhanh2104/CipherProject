@@ -188,7 +188,7 @@
                                     id="find_item"
                                     type="text"
                             />
-                            <button class="btn1" type="submit">
+                            <button class="btn1" type="submit" style="height: 30px;border-radius: 5px">
                                 <span class="fa fa-search" aria-hidden="true"></span>
                             </button>
                         </div>

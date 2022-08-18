@@ -128,6 +128,9 @@
         .form-group {
             display: flex;
         }
+        .form-group label{
+            margin: 8px;
+        }
     </style>
 </head>
 <body>
@@ -193,8 +196,8 @@
                                 <div class="divPublic" style="width: 334px">
                                 <textarea type="text" id="sign" style="word-wrap:break-word;height: fit-content"
                                           class="form-control">${odetail.sign}</textarea>
-                                    <button type="button" id="btnSign" style="float: right" onclick="copy"
-                                            class="right">Copy
+                                    <button type="button" id="btnSign" style="float: right;margin-top: 5px" onclick="copy"
+                                            class="right btn btn-primary">Copy
                                     </button>
                                 </div>
                             </div>
@@ -203,8 +206,8 @@
                                 <div class="divPublic" style="width: 300px">
                                 <textarea type="text" id="data" style="word-wrap:break-word;height: fit-content"
                                           class="form-control">${odetail.dataSign}</textarea>
-                                    <button type="button" id="btnData" style="float: right" onclick="copy"
-                                            class="right">Copy
+                                    <button type="button" id="btnData" style="float: right;margin-top: 5px" onclick="copy"
+                                            class="right btn btn-primary">Copy
                                     </button>
                                 </div>
                             </div>

@@ -127,7 +127,7 @@
             <h2 class="text-danger"  style="word-wrap:break-word;text-align: center">Vui lòng lưu lại nội dung bên dưới để xác nhận khi mua hàng </h2>
             <div class="border border-success" style="word-wrap: break-word;max-width: 536px;height: fit-content">
 
-                <textarea id="privateKey">
+                <textarea id="privateKey" style="width: 100%;height: 250px">
                     <%=
                     request.getAttribute("messPri") == null ? "" : request.getAttribute("messPri")
                     %>
@@ -136,7 +136,10 @@
 <%--                        class="right">Copy--%>
 <%--                </button>--%>
             </div>
-            <a  style="color: rgb(78, 110, 255);font-size: 30px" href="/main/login.jsp">Đăng Nhập</a>
+            <div style="display: flex;justify-content: space-between">
+            <a  style="color: rgb(78, 110, 255);font-size: 30px;margin-top: 10px;margin-left: 50px" href="/main/login.jsp">Đăng Nhập</a>
+            <button class="btn btn-primary" style="margin-right: 50px;margin-top: 10px" id="btnKey" onclick="copy">Copy</button>
+            </div>
         </c:if>
         <c:if test="${success.length() == null}">
             <input
@@ -215,10 +218,11 @@
 
     button.addEventListener("click", function(event) {
         event.preventDefault();
-        input.select();
+        input.select().trim();
         document.execCommand("copy");
     });
 
 </script>
+
 </body>
 </html>

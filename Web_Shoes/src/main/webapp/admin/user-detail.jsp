@@ -3,9 +3,17 @@
 <html>
 <head>
     <title>UserDetail</title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         .register {
             background: #3e5569;
@@ -128,6 +136,10 @@
         .form-group {
             display: flex;
         }
+        .form-group label{
+            padding: 5px;
+            margin-right: 5px;
+        }
     </style>
 </head>
 <body>
@@ -188,10 +200,11 @@
                                 <div class="divPublic" style="width: 300px">
                                 <textarea type="text" id="public" style="word-wrap:break-word;height: 150px"
                                           class="form-control">${udetail.publicKey} </textarea>
-                                    <button type="button" id="btnpublic" style="float: right" onclick="copy" class="right">Copy</button>
+                                    <button type="button" id="btnpublic" style="float: right; margin-top: 7px" onclick="copy" class="btn btn-primary right">Copy</button>
                                 </div>
                             </div>
-                            <button type="submit"  style="color: #ffffff" class="btnRegister"><a href="/admin/users" style="color: #fff">Back</a></button>
+
+                            <button type="submit"  style="color: #ffffff" class="btn btn-primary btnRegister"><a href="/admin/users" style="color: #fff">Back</a></button>
                         </div>
                     </div>
                 </div>
