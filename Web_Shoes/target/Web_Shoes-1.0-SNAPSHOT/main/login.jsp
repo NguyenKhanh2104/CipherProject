@@ -358,8 +358,8 @@
             <div class="login-box-seperator"></div>
         </div>
 
-        <div class="email-login" style="background-color: #ffffff">
-            <span>
+        <div class="email-login" style="background-color: #ffffff;color: red">
+            <span style="color: red;display: flex;justify-content: center;text-align: center;">
             <%=
             request.getAttribute("mess") == null ? "" : request.getAttribute("mess")
             %>

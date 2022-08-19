@@ -141,11 +141,12 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <h3 class="register-heading">Order - Detail</h3>
+
                     <div class="row register-form">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>orderId </label>
-                                <input type="text" class="form-control" value="${odetail.orderId}" readonly/>
+                                <input type="text" class="form-control"  value="${odetail.orderId}" readonly/>
                             </div>
                             <div class="form-group">
                                 <label>Address </label>
@@ -157,12 +158,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Status </label>
-                                <select class="form-control">
+                                <select class="form-control" name="filter">
                                     <option class="hidden" selected disabled>${odetail.status}
                                     </option>
-
-                                    <option>0</option>
-                                    <option>1</option>
+                                    <option >0</option>
+                                    <option name="one">1</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -211,9 +211,16 @@
                                     </button>
                                 </div>
                             </div>
-                            <button type="submit" class="btnRegister"><a style="color: #fff" href="/admin/orders">Back</a></button>
+                            <button type="button" class="btnRegister"><a style="color: #fff" href="/admin/orders">Back</a></button>
+
+
+                        </div>
+                        <div class="form-group" style="display: flex;justify-content: center;align-items: center;text-align: center;margin: 0 auto">
+                            <button type="submit" class="btn btn-primary" style="margin: 0 auto; display: flex;justify-content: center;align-items: center">Update</button>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </div>
@@ -236,5 +243,6 @@
         document.execCommand("copy");
     });
 </script>
+
 </body>
 </html>

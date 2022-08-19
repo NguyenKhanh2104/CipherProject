@@ -26,7 +26,7 @@ public class LoginController extends HttpServlet {
         UserService userService = new UserService();
         User user = userService.getUser(username, password);
         if (user.getUsername() == null || user.getPassword() ==null) {
-            req.setAttribute("mess", "User name hoặc mật khẩu sai");
+            req.setAttribute("mess", "UserName or Password wrong");
             req.getRequestDispatcher("/main/login.jsp").forward(req,resp);
         }
         if (user != null) {

@@ -16,7 +16,8 @@ public class DetailOrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
-       Order o = oS.getOrderById(id);
+        Order o = oS.getOrderById(id);
+
 
         req.setAttribute("odetail", o);
         req.getRequestDispatcher("/admin/order-detail.jsp").forward(req, resp);
@@ -24,6 +25,7 @@ public class DetailOrderController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
+       doGet(req,resp);
+
     }
 }
