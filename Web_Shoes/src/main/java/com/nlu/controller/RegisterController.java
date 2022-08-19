@@ -72,7 +72,7 @@ public class RegisterController extends HttpServlet {
         user.setPasswordMD5(password);
         userService.save(user, "customer", pub);
         req.setAttribute("register-success", "success");
-
+        pri.trim();
         req.setAttribute("messPri", pri);
 
         req.getRequestDispatcher("/main/register.jsp").forward(req, resp);

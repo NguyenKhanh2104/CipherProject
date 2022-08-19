@@ -10,8 +10,8 @@ import static com.nlu.db.Datasource.getConnection;
 import static com.nlu.db.Datasource.returnConnection;
 
 public class OrderService {
-
     public List<Order> findAll() {
+        System.err.println("kkkkkkkkkkkkkkkk");
         List<Order> order = new ArrayList<>();
         String query = "SELECT * FROM `order` ORDER BY order_id DESC ";
         try {
@@ -43,6 +43,7 @@ public class OrderService {
         }
 
     }
+
     public Order getOrderById(String orderId) {
         Connection conn = getConnection();
         String query = "SELECT * FROM `order` WHERE order_id= ?";
@@ -92,10 +93,26 @@ public class OrderService {
         }
     }
 
+    public void updateStatusOrder(Order order) {
+        System.err.println("hhhhhhhhhhhhh");
+
+        String query = "update `order` set status =? where order_id = ?;";
+        try {
+            Connection conn = getConnection();
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, order.getStatus());
+            ps.setString(2, order.getOrderId());
+             ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }
 
     public static void main(String[] args) {
         OrderService os = new OrderService();
         System.out.println(os.getOrderById("HD1657809575373"));
     }
+
 
 }

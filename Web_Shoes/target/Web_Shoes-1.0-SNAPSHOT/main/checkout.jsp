@@ -287,7 +287,6 @@
                     hàng nhanh
                 </p>
             </div>
-            <button class="orderProduct">Đặt Hàng</button>
         </div>
     </div>
 </section>

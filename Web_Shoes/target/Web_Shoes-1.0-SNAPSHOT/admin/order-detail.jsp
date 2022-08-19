@@ -128,7 +128,8 @@
         .form-group {
             display: flex;
         }
-        .form-group label{
+
+        .form-group label {
             margin: 8px;
         }
     </style>
@@ -136,88 +137,95 @@
 <body>
 <div class="container register">
     <div class="row" style="width: 125%">
-
         <div class="col-md-9 register-right" style="">
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <h3 class="register-heading">Order - Detail</h3>
-                    <div class="row register-form">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>orderId </label>
-                                <input type="text" class="form-control" value="${odetail.orderId}" readonly/>
-                            </div>
-                            <div class="form-group">
-                                <label>Address </label>
-                                <input type="text" class="form-control" value="${odetail.address}"/>
-                            </div>
-                            <div class="form-group">
-                                <label>Date </label>
-                                <input type="text" class="form-control" value="${odetail.date}"/>
-                            </div>
-                            <div class="form-group">
-                                <label>Status </label>
-                                <select class="form-control">
-                                    <option class="hidden" selected disabled>${odetail.status}
-                                    </option>
-
-                                    <option>0</option>
-                                    <option>1</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Note </label>
-                                <textarea class="form-control" style="height: fit-content"
-                                >${odetail.note}</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>UserId </label>
-                                <input type="text" class="form-control" value="${odetail.user_id}"/>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-
-                            <div class="form-group">
-                                <label>Email </label>
-                                <input type="text" class="form-control" value="${odetail.email}"/>
-                            </div>
-                            <div class="form-group">
-                                <label>City </label>
-                                <input type="text"
-                                       class="form-control" value="${odetail.city}"/>
-                            </div>
-                            <div class="form-group">
-                                <label>Phone </label>
-                                <input type="text"
-                                       class="form-control" value="${odetail.phone}"/>
-                            </div>
-                            <div class="form-group">
-                                <label>Sign </label>
-                                <div class="divPublic" style="width: 334px">
-                                <textarea type="text" id="sign" style="word-wrap:break-word;height: fit-content"
-                                          class="form-control">${odetail.sign}</textarea>
-                                    <button type="button" id="btnSign" style="float: right;margin-top: 5px" onclick="copy"
-                                            class="right btn btn-primary">Copy
-                                    </button>
+                    <form action="/admin/orders/update" method="post">
+                        <div class="row register-form">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>orderId </label>
+                                    <input name="orderId" type="text" class="form-control" value="${orderDetail.orderId}"
+                                           readonly/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Address </label>
+                                    <input name="address" type="text" class="form-control" value="${orderDetail.address}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Date </label>
+                                    <input type="text" name="date" class="form-control" value="${orderDetail.date}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Status </label>
+                                    <input type="text" name="status" class="form-control" value="${orderDetail.status}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Note </label>
+                                    <textarea class="form-control" style="height: fit-content" name="note"
+                                    >${orderDetail.note}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>UserId </label>
+                                    <input name="user_id" type="text" class="form-control" value="${orderDetail.user_id}"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label>Data Sign </label>
-                                <div class="divPublic" style="width: 300px">
-                                <textarea type="text" id="data" style="word-wrap:break-word;height: fit-content"
-                                          class="form-control">${odetail.dataSign}</textarea>
-                                    <button type="button" id="btnData" style="float: right;margin-top: 5px" onclick="copy"
-                                            class="right btn btn-primary">Copy
-                                    </button>
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label>Email </label>
+                                    <input type="text" name="email" class="form-control" value="${orderDetail.email}"/>
                                 </div>
+                                <div class="form-group">
+                                    <label>City </label>
+                                    <input type="text" name="city"
+                                           class="form-control" value="${orderDetail.city}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone </label>
+                                    <input type="text" name="phone"
+                                           class="form-control" value="${orderDetail.phone}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Sign </label>
+                                    <div class="divPublic" style="width: 334px">
+                                <textarea type="text" id="sign" style="word-wrap:break-word;height: fit-content" name="sign"
+                                          class="form-control">${orderDetail.sign}
+                                </textarea>
+
+                                        <button type="button" id="btnSign" style="float: right;margin-top: 5px"
+                                                onclick="copy"
+                                                class="right btn btn-primary">Copy
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Data Sign </label>
+                                    <div class="divPublic" style="width: 300px">
+                                <textarea type="text" id="data" style="word-wrap:break-word;height: fit-content" name="dataSign"
+                                          class="form-control">${orderDetail.dataSign}</textarea>
+                                        <button type="button" id="btnData" style="float: right;margin-top: 5px"
+                                                onclick="copy"
+                                                class="right btn btn-primary">Copy
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-success">Save</button>
+                                <button class="btnRegister"><a style="color: #fff"
+                                                               href="/admin/orders">Back</a></button>
                             </div>
-                            <button type="submit" class="btnRegister"><a style="color: #fff" href="/admin/orders">Back</a></button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+
     </div>
+</div>
+</div>
+</div>
 </div>
 <script type="text/javascript">
     var buttonSign = document.getElementById("btnSign"),
@@ -225,12 +233,12 @@
 
     var buttonData = document.getElementById("btnData"),
         inputData = document.getElementById("data");
-    buttonSign.addEventListener("click", function(event) {
+    buttonSign.addEventListener("click", function (event) {
         event.preventDefault();
         inputSign.select();
         document.execCommand("copy");
     });
-    buttonData.addEventListener("click", function(event) {
+    buttonData.addEventListener("click", function (event) {
         event.preventDefault();
         inputData.select();
         document.execCommand("copy");

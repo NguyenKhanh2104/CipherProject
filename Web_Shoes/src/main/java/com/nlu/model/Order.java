@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -23,5 +24,8 @@ public class Order {
     private String sign;
     private String dataSign;
 
-
+    public Order(String orderId, Integer status) {
+        this.orderId = orderId;
+        this.status = status;
+    }
 }
