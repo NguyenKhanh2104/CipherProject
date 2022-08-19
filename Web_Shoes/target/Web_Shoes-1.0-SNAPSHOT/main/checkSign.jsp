@@ -261,11 +261,11 @@
         %>
         <h2 style="text-align: center;color: green">Vui lòng nhập thông tin xác nhận tài khoản</h2>
         <div class="form-group row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Dữ liệu ký : </label>
+            <label for="staticKey" class="col-sm-2 col-form-label">Dữ liệu ký : </label>
             <div class="col-sm-10">
-                <input   type="text" readonly class="form-control-plaintext" id="staticEmail"
+                <input type="text" readonly class="form-control-plaintext" id="staticKey"
                        value="<%= request.getAttribute("key")%>">
-                <button type="button" id="btnkey" style="float: right" onclick="copy"
+                <button type="button" id="btnKey" style="float: right" onclick="copy"
                         class="right">Copy
                 </button>
             </div>
@@ -282,7 +282,8 @@
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong">
                 Hướng dẫn
             </button>
-            <button type="submit" onclick="myFunction()" class="btn btn-success" style="height: fit-content;margin-left: 537px">
+            <button onclick="myFunction()" type="submit" onclick="myFunction()" class="btn btn-success"
+                    style="height: fit-content;margin-left: 537px">
                 Gửi
             </button>
             <div class="center">
@@ -353,11 +354,11 @@
 
 <jsp:include page="/main/footer.jsp"/>
 <script type="text/javascript">
-    var button = document.getElementById("staticEmail"),
-        input = document.getElementById("btnKey");
+    var input = document.getElementById("staticKey"),
+        button = document.getElementById("btnKey");
 
 
-    button.addEventListener("click", function(event) {
+    button.addEventListener("click", function (event) {
         event.preventDefault();
         input.select();
         document.execCommand("copy");
@@ -366,12 +367,12 @@
 </script>
 <script>
     function myFunction() {
-       var inputtf =  document.getElementById("inputPassword").value;
-        if(inputtf.isEmpty()){
-            alert("Vui lòng nhập chữ ký để xác nhận hoá đơn");
+        var inputtf = document.getElementById("inputPassword").value;
+        if (!inputtf.isEmpty()) {
+            alert("Quá trình xác nhận mua hàng hoàn tất \nxin chân thành cảm ơn bạn đã đồng hành cùng shop");
         }
-        alert("Quá trình xác nhận mua hàng hoàn tất \nxin chân thành cảm ơn bạn đã đồng hành cùng shop");
     }
+
 </script>
 <script src="/main/script/main.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

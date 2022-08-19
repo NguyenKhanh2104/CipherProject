@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/logo-icon.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/adidas Yeezy Boost 350 V2 Desert Sage.jpg">
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="../assets/extra-libs/multicheck/multicheck.css">
     <link href="../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">

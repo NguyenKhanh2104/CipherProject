@@ -15,8 +15,6 @@ import static com.nlu.db.Datasource.returnConnection;
 public class SignService {
     Hash hashText = new Hash();
     OrderService ors = new OrderService();
-
-
     public void updateSign( String signText) {
         Connection conn = getConnection();
         String query = "UPDATE `order` SET sign =  ?  WHERE order_id =?";

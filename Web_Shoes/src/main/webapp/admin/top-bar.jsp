@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/logo-icon.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/adidas Yeezy Boost 350 V2 Desert Sage.jpg">
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="../assets/extra-libs/multicheck/multicheck.css">
     <link href="../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
@@ -52,7 +52,7 @@
                     <b class="logo-icon p-l-10">
                         <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                         <!-- Dark Logo icon -->
-                        <img class="logo-admin" src="../assets/images/logo-icon.jpg" alt="homepage"
+                        <img class="logo-admin" src="../images/adidas Yeezy Boost 350 V2 Desert Sage.jpg" alt="homepage"
                              class="light-logo"/>
 
                     </b>

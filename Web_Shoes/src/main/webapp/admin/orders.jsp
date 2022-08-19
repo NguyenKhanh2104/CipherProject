@@ -245,7 +245,7 @@
                                     <td><input type="checkbox" class="cb_item"/></td>
                                     <td>${o.orderId}</td>
                                     <td>${o.address}</td>
-                                    <td>${r.date}</td>
+                                    <td>${o.date}</td>
                                     <td>${o.status}</td>
                                     <td>${o.note}</td>
                                     <td>${o.user_id}</td>
@@ -260,7 +260,7 @@
                                                 <%--                                            <button class="btn_action btn_quick-edit" onclick="openForm(${o.id},${o.key},${o.username},${o.password},${o.email},${o.phone},${o.city},${o.distric},${o.adddressDetails},${o.role},${o.publicKey})">--%>
                                             <button class="btn_action btn_quick-edit">
                                                     <%--                                                <a href="/admin/users/?id=${o.id}">Cài đặt</a>--%>
-                                                <a href="/admin/orders/detail?id=${o.orderId}">Chi tiết</a>
+                                                <a href="/admin/orders/update?id=${o.orderId}">Chỉnh sửa</a>
                                             </button>
                                             <button class="btn_action btn_user-delete btn-danger"
                                                     style="margin-left: 5px">

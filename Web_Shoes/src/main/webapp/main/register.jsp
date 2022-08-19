@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Đăng Kí</title>
     <style>
         * {
@@ -124,21 +125,21 @@
         </span>
 
             </h1>
-            <h2 class="text-danger"  style="word-wrap:break-word;text-align: center">Vui lòng lưu lại nội dung bên dưới để xác nhận khi mua hàng </h2>
-            <div class="border border-success" style="word-wrap: break-word;max-width: 536px;height: fit-content">
+            <h2 class="text-danger" style="word-wrap:break-word;text-align: center">Vui lòng lưu lại nội dung bên dưới
+                để xác nhận khi mua hàng </h2>
+            <div class="border border-success">
 
-                <textarea id="privateKey" style="width: 100%;height: 250px">
-                    <%=
-                    request.getAttribute("messPri") == null ? "" : request.getAttribute("messPri")
-                    %>
-                </textarea>
-<%--                <button type="button" id="btnKey" style="float: right" onclick="copy"--%>
-<%--                        class="right">Copy--%>
+                <h5 id="inputCopy" style="width: 100%;word-wrap: break-word;
+    height: fit-content;"> <%=request.getAttribute("messPri") == null ? "" : request.getAttribute("messPri")%>
+                </h5>
+<%--                <button type="button" id="btnCopy" style="float: right" onclick="copy"--%>
+<%--                        class="btn btn-primary">Copy--%>
 <%--                </button>--%>
             </div>
             <div style="display: flex;justify-content: space-between">
-            <a  style="color: rgb(78, 110, 255);font-size: 30px;margin-top: 10px;margin-left: 50px" href="/main/login.jsp">Đăng Nhập</a>
-            <button class="btn btn-primary" style="margin-right: 50px;margin-top: 10px" id="btnKey" onclick="copy">Copy</button>
+                <a style="color: rgb(78, 110, 255);font-size: 30px;margin-top: 10px;margin-left: 50px"
+                   href="/main/login.jsp">Đăng Nhập</a>
+
             </div>
         </c:if>
         <c:if test="${success.length() == null}">
@@ -227,13 +228,13 @@
     </div>
 </form>
 <script type="text/javascript">
-    var button = document.getElementById("btnKey"),
-        input = document.getElementById("privateKey");
+    var button = document.getElementById("btnCopy"),
+        input = document.getElementById("inputCopy");
 
 
-    button.addEventListener("click", function(event) {
+    button.addEventListener("click", function (event) {
         event.preventDefault();
-        input.select().replace(/\s/g, '');
+        input.select();
         document.execCommand("copy");
 
     });
