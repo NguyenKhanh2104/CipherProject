@@ -170,6 +170,7 @@
                                 <div class="form-group">
                                     <label>UserId </label>
                                     <input name="user_id" type="text" class="form-control" value="${orderDetail.user_id}"/>
+
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -214,12 +215,11 @@
                                 </div>
 
                                 <button type="submit" class="btn btn-success">Save</button>
-                                <button class="btnRegister"><a style="color: #fff"
-                                                               href="/admin/orders">Back</a></button>
+                                <button class="btnRegister"><a style="color: #fff" href="/admin/orders">Back</a></button>
                             </div>
-
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>

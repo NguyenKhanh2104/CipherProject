@@ -39,12 +39,12 @@ public class RegisterController extends HttpServlet {
             return;
         }
         if (userService.exitsEmail(email)) {
-            req.setAttribute("mess", "Email đã tồn tại vui lòng chọn email khác");
+            req.setAttribute("erremail", "Email đã tồn tại vui lòng chọn email khác");
             req.getRequestDispatcher("/main/register.jsp").forward(req, resp);
             return;
         }
         if (!password.equals(confirmPassword)) {
-            req.setAttribute("mess", "Vui lòng xác nhận đúng mật khẩu");
+            req.setAttribute("errpass", "Vui lòng xác nhận đúng mật khẩu");
             req.getRequestDispatcher("/main/register.jsp").forward(req, resp);
             return;
         }

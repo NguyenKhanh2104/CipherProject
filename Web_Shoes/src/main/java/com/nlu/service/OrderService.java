@@ -94,7 +94,6 @@ public class OrderService {
     }
 
     public void updateStatusOrder(Order order) {
-        System.err.println("hhhhhhhhhhhhh");
 
         String query = "update `order` set status =? where order_id = ?;";
         try {

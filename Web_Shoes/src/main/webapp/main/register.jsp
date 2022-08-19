@@ -130,11 +130,8 @@
             <div class="border border-success">
 
                 <h5 id="inputCopy" style="width: 100%;word-wrap: break-word;
-    height: fit-content;"> <%=request.getAttribute("messPri") == null ? "" : request.getAttribute("messPri")%>
+    height: fit-content;"><%=request.getAttribute("messPri") == null ? "" : request.getAttribute("messPri")%>
                 </h5>
-<%--                <button type="button" id="btnCopy" style="float: right" onclick="copy"--%>
-<%--                        class="btn btn-primary">Copy--%>
-<%--                </button>--%>
             </div>
             <div style="display: flex;justify-content: space-between">
                 <a style="color: rgb(78, 110, 255);font-size: 30px;margin-top: 10px;margin-left: 50px"
@@ -144,20 +141,20 @@
         </c:if>
         <c:if test="${success.length() == null}">
             <div class="form-group">
-            <input
-                    value="<%=
+                <input
+                        value="<%=
                     request.getParameter("username") == null ? "": request.getParameter("username")
 
                 %>"
-                    type="text"
-                    placeholder="Tên người dùng"
-                    name="username"
-                    id="username"
+                        type="text"
+                        placeholder="Tên người dùng"
+                        name="username"
+                        id="username"
 
-            />
-            <label id="eruser" style="color: red">
-                <%=request.getAttribute("mess") == null ? "" : request.getAttribute("mess")%>
-            </label>
+                />
+                <label id="eruser" style="color: red">
+                    <%=request.getAttribute("mess") == null ? "" : request.getAttribute("mess")%>
+                </label>
             </div>
 
             <input
@@ -169,11 +166,11 @@
                     placeholder="Email"
                     name="email"
                     id="email"
-                    onclick="checkEmail()"
+
 
             />
             <label id="eremail" style="color: red">
-                <%=request.getAttribute("mess") == null ? "" : request.getAttribute("mess")%>
+                <%=request.getAttribute("erremail") == null ? "" : request.getAttribute("erremail")%>
             </label>
 
             <input
@@ -193,7 +190,7 @@
                     request.getParameter("city") == null ? "": request.getParameter("city")
 
                 %>"
-                   id="city"  type="text" name="city" placeholder="Tỉnh/Thành Phố"/>
+                    id="city" type="text" name="city" placeholder="Tỉnh/Thành Phố"/>
             <label id="ercity" style="color: red"></label>
             <input
                     value="<%=
@@ -211,7 +208,7 @@
                     id="psw"
 
             />
-            <label id="erpsw" style="color: red"></label>
+            <label id="erpsw" style="color: red"> </label>
             <input
                     type="password"
                     placeholder="Xác nhận mật khẩu"
@@ -219,7 +216,7 @@
                     id="psw-repeat"
 
             />
-            <label id="erconfirm" style="color: red"></label>
+            <label id="erconfirm" style="color: red"> <%=request.getAttribute("errpass") == null ? "" : request.getAttribute("errpass")%></label>
             <hr/>
             <a href="/">Quay lại trang chủ</a>
             <button type="submit" class="registerbtn">Đăng kí</button>
@@ -241,7 +238,7 @@
 
 </script>
 <script>
-    function ValidateForm(){
+    function ValidateForm() {
         var username = document.getElementById("username").value;
         var email = document.getElementById("email").value;
         var phone = document.getElementById("phone").value;
@@ -258,96 +255,94 @@
         var erpsw = document.getElementById("erpsw");
         var erconfirm = document.getElementById("erconfirm");
         var eraddress = document.getElementById("eraddress");
-        var regex = /^\w+@[a-zA-Z]{3,}\.com$/i ;
+        var regex = /^\w+@[a-zA-Z]{3,}\.com$/i;
         var regexphone = /^\d{3}[-\s]?\d{3}[-\s]?\d{4}$/;
 
-        if (username == "" || username == null){
+        if (username == "" || username == null) {
             erusername.innerHTML = '<label style="color: red">Họ và tên không thể bỏ trống </label>';
             erphone.innerHTML = '<label style="color: red"></label>';
             ercity.innerHTML = '<label style="color: red"></label>';
-            return  false;
-        }else{
+            return false;
+        } else {
             erusername.innerHTML = '<label style="color: red"></label>';
 
         }
 
-        if (email == "" || email == null){
+        if (email == "" || email == null) {
             eremail.innerHTML = '<label style="color: red">Email không thể bỏ trống </label>';
-            return  false;
+            return false;
 
 
-        } else{
+        } else {
             eremail.innerHTML = '<label style="color: red"></label>';
         }
-        if (regex.test(email)){
+        if (regex.test(email)) {
             eremail.innerHTML = '<label style="color: red"></label>';
-        }else {
+        } else {
             eremail.innerHTML = '<label style="color: red">Email Sai định dạng </label>';
             return false;
         }
-        if (phone == "" || phone == null){
+        if (phone == "" || phone == null) {
             erphone.innerHTML = '<label style="color: red">Số điện thoại không thể bỏ trống </label>';
-            return  false;
-        }else{
+            return false;
+        } else {
             erphone.innerHTML = '<label style="color: red"></label>';
         }
-        if (regexphone.test(phone)){
+        if (regexphone.test(phone)) {
             erphone.innerHTML = '<label style="color: red"></label>';
-        }else {
+        } else {
             erphone.innerHTML = '<label style="color: red">Số điện thoại sai định dạng</label>';
             return false;
         }
-        if (city == ""|| city == null){
+        if (city == "" || city == null) {
             ercity.innerHTML = '<label style="color: red">Địa chỉ không thể bỏ trống </label>';
-            return  false;
-        }else{
+            return false;
+        } else {
             ercity.innerHTML = '<label style="color: red"></label>';
 
         }
-        if (distric == ""|| distric == null){
+        if (distric == "" || distric == null) {
             erdistric.innerHTML = '<label style="color: red">Địa chỉ không thể bỏ trống </label>';
-            return  false;
-        }else{
+            return false;
+        } else {
             erdistric.innerHTML = '<label style="color: red"></label>';
 
         }
-        if (address == ""|| address == null){
+        if (address == "" || address == null) {
             eraddress.innerHTML = '<label style="color: red">Địa chỉ không thể bỏ trống </label>';
-            return  false;
-        }else{
+            return false;
+        } else {
             eraddress.innerHTML = '<label style="color: red"></label>';
 
         }
-        if (psw == ""|| psw == null ){
+        if (psw == "" || psw == null) {
             erpsw.innerHTML = '<label style="color: red">Mật khẩu không thể bỏ trống </label>';
-            return  false;
-        }else{
+            return false;
+        } else {
             erpsw.innerHTML = '<label style="color: red"></label>';
         }
-        if (psw.length() <= 8){
+        if (psw.length() <= 8) {
             erpsw.innerHTML = '<label style="color: red">Mật khẩu không thể dưới 8 ký tự </label>';
-            return  false;
-        }else {
+            return false;
+        } else {
             erpsw.innerHTML = '<label style="color: red"></label>';
         }
 
 
-        if (confirm == "" || confirm == null){
+        if (confirm == "" || confirm == null) {
             erconfirm.innerHTML = '<label style="color: red">Xác nhận mật khẩu không thể bỏ trống </label>';
-            return  false;
-        } else{
+            return false;
+        } else {
             erconfirm.innerHTML = '<label style="color: red"></label>';
         }
-        if (psw != confirm){
+        if (psw != confirm) {
             erconfirm.innerHTML = '<label style="color: red">Xác nhận mật khẩu không đúng </label>';
-            return  false;
-        } else{
+            return false;
+        } else {
             erconfirm.innerHTML = '<label style="color: red"></label>';
         }
 
     }
-
-
 
 
 </script>
