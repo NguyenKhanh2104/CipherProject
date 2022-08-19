@@ -142,7 +142,7 @@
 
             </div>
         </c:if>
-        <c:if test="${success.length() ==0}">
+        <c:if test="${success.length() == null}">
             <input
                     value="<%=
                     request.getParameter("username") == null ? "": request.getParameter("username")

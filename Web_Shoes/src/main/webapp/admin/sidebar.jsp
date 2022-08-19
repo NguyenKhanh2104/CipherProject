@@ -85,7 +85,7 @@
                         </ul>
                     </li>
                     <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                                href="login.html" aria-expanded="false"><i
+                                                role="button"  href="/logout" aria-expanded="false"><i
                             class="fas fa-sign-out-alt"></i><span class="hide-menu">Đăng xuất</span></a></li>
 
 
